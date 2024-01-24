@@ -48,6 +48,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <link rel="icon" href="/favicon.svg" sizes="any" />
       <body className={aeonik.variable}>{children}</body>
     </html>
   );
