@@ -11,7 +11,7 @@ export default function Video() {
   );
 
   return (
-    <>
+    <div className="max-w-screen-2xl flex flex-col mx-auto">
       <h2 className="sub-heading lg:max-w-[1170px] px-4 lg:px-8">
         Our mission lies in bridging the gap between ideas and their true
         outcomes as realization.
@@ -38,6 +38,6 @@ export default function Video() {
         The services we provide are rooted in the unique talent we’ve cultivated
         and our shared experiences.
       </h2>
-    </>
+    </div>
   );
 }

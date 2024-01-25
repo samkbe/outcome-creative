@@ -26,6 +26,15 @@ module.exports = {
       gridTemplateRows: {
         heroGridRows: "18% 22% 27% 34%",
       },
+      animation: {
+        scroll: "scroll 80s linear 0s infinite",
+      },
+      keyframes: {
+        scroll: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(calc(-50%))" },
+        },
+      },
     },
   },
   plugins: [],
