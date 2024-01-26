@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer components {
+  .main-heading {
+    @apply text-[50px] leading-[50px] lg:leading-[140px] lg:text-[140px] uppercase font-normal;
+  }
   .sub-heading {
     @apply text-[36px] leading-[36px] lg:leading-[70px] lg:tracking-[-1px] lg:text-[70px] uppercase font-normal;
   }

@@ -8,6 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        tan: "#E9DABFCC",
         grey: {
           100: "#EEEEEE",
           200: "#BBBBBB",
@@ -15,6 +16,10 @@ module.exports = {
           400: "#666666",
           500: "#333333",
         },
+      },
+      backgroundImage: {
+        "tan-gradient":
+          "linear-gradient(to top, #D2B48C, #D2B48C 20%, transparent 20%, transparent)",
       },
       minHeight: {
         aboveFold: "calc(100vh - 67px)",
