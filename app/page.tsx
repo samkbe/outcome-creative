@@ -4,6 +4,7 @@ import Hero from "@/components/hero";
 import Video from "@/components/video";
 import Accordian from "@/components/accordion";
 import Projects from "@/components/projects";
+import Logos from "@/components/logos";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Video />
       <Accordian />
       <Projects />
+      <Logos />
     </>
   );
 }
