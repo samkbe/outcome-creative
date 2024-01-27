@@ -1,8 +1,11 @@
 "use client";
 import { useScroll, useTransform, motion } from "framer-motion";
+import { useRef } from "react";
 
 export default function Video() {
-  const { scrollYProgress } = useScroll();
+  const scrollRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({});
 
   const clipPathValue = useTransform(
     scrollYProgress,
@@ -11,7 +14,10 @@ export default function Video() {
   );
 
   return (
-    <div className="max-w-screen-2xl flex flex-col mx-auto">
+    <div
+      ref={scrollRef}
+      className="max-w-screen-2xl flex flex-col mx-auto md:mb-36 mb-16"
+    >
       <h2 className="sub-heading lg:max-w-[1170px] px-4 lg:px-8">
         Our mission lies in bridging the gap between ideas and their true
         outcomes as realization.

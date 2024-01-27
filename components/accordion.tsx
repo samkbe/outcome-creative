@@ -100,35 +100,45 @@ function AccordianItem({
       className="flex flex-col w-full items-center"
     >
       <div className="w-full h-[1px] bg-black" />
-      <div className="my-2 lg:my-4 px-4 lg:px-8 flex relative justify-between max-w-screen-2xl w-full">
-        <h3 className="uppercase font-medium text-base w-[750px]">{title}</h3>
+      <div className="my-7 lg:my-4 px-4 lg:px-8 flex md:flex-row flex-col relative justify-between max-w-screen-2xl w-full">
+        <h3 className="uppercase font-medium text-base md:w-[40%] text-[16px] w-full">
+          {title}
+        </h3>
         <AnimatePresence>
           {isSelected && (
-            <motion.section
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="overflow-hidden flex mb-4"
-            >
-              <div className="flex flex-col">
-                <h3 className="text-4xl leading-9 uppercase mb-8">
-                  {secondaryTitle}
-                </h3>
-                <p>{subtext}</p>
-                <button className="mt-4 py-2 px-4 border border-black">
-                  WORK WITH US
-                </button>
-              </div>
-              <img alt={`Symbol for ${title}`} src={symbolUrl} />
-            </motion.section>
+            <>
+              <motion.section
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden flex flex-col md:flex-row md:w-[60%]"
+              >
+                <div className="flex flex-col md:mr-14 mt-10 md:mt-0 md:w-3/5 order-2 md:order-none">
+                  <h3 className="text-[24px] leading-[24px] md:text-4xl md:leading-9 uppercase mb-8 w-full">
+                    {secondaryTitle}
+                  </h3>
+                  <p className="">{subtext}</p>
+                  <button className="mt-4 py-2 px-4 uppercase md:w-44 text-white bg-black">
+                    Work with us
+                  </button>
+                </div>
+                <div className="md:w-2/5 flex items-center justify-center order-1 md:order-none mt-5">
+                  <img
+                    className=""
+                    alt={`Symbol for ${title}`}
+                    src={symbolUrl}
+                  />
+                </div>
+              </motion.section>
+            </>
           )}
         </AnimatePresence>
         <AnimatePresence>
           <motion.img
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             className={`${
               isSelected
