@@ -10,3 +10,7 @@
     @apply text-[36px] leading-[36px] lg:leading-[70px] lg:tracking-[-1px] lg:text-[70px] uppercase font-normal;
   }
 }
+
+* {
+  box-sizing: border-box;
+}

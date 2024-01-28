@@ -123,9 +123,9 @@ function AccordianItem({
                     Work with us
                   </button>
                 </div>
-                <div className="md:w-2/5 flex items-center justify-center order-1 md:order-none mt-5">
+                <div className="md:w-2/5 flex items-center justify-center order-1 md:order-none mt-5 md:mt-0">
                   <img
-                    className=""
+                    className="md:max-h-[385px]"
                     alt={`Symbol for ${title}`}
                     src={symbolUrl}
                   />

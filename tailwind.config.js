@@ -21,7 +21,7 @@ module.exports = {
         "tan-gradient":
           "linear-gradient(to top, #D2B48C, #D2B48C 20%, transparent 20%, transparent)",
       },
-      minHeight: {
+      height: {
         aboveFold: "calc(100vh - 67px)",
         "aboveFold-md": "calc(100vh - 96px)",
       },
