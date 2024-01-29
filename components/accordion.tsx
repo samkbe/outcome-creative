@@ -99,7 +99,7 @@ function AccordianItem({
       onClick={() => handleClick()}
       className="flex flex-col w-full items-center"
     >
-      <div className="w-full h-[1px] bg-black" />
+      <div className="w-full h-[1px] bg-black dark:bg-white" />
       <div className="my-7 lg:my-4 px-4 lg:px-8 flex md:flex-row flex-col relative justify-between max-w-screen-2xl w-full">
         <h3 className="uppercase font-medium text-base md:w-[40%] text-[16px] w-full">
           {title}
@@ -119,13 +119,13 @@ function AccordianItem({
                     {secondaryTitle}
                   </h3>
                   <p className="">{subtext}</p>
-                  <button className="mt-4 py-2 px-4 uppercase md:w-44 text-white bg-black">
+                  <button className="mt-4 py-2 px-4 uppercase md:w-44 text-white bg-black dark:bg-white dark:text-black">
                     Work with us
                   </button>
                 </div>
                 <div className="md:w-2/5 flex items-center justify-center order-1 md:order-none mt-5 md:mt-0">
                   <img
-                    className="md:max-h-[385px]"
+                    className="md:max-h-[385px] dark:invert"
                     alt={`Symbol for ${title}`}
                     src={symbolUrl}
                   />
@@ -144,7 +144,7 @@ function AccordianItem({
               isSelected
                 ? "lg:hidden"
                 : "rotate-180 transform-gpu transition ease-in-out"
-            } absolute right-4 lg:right-8`}
+            } absolute right-4 lg:right-8 dark:invert`}
             src="/arrow.svg"
           />
         </AnimatePresence>

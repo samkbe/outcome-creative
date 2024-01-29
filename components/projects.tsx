@@ -56,7 +56,7 @@ export default function Projects() {
                       className="inline-block align-baseline h-[.75em] w-auto pr-1"
                       key={symbol}
                     >
-                      <img className="h-full w-auto" src={symbol} />
+                      <img className="h-full w-auto dark:invert" src={symbol} />
                     </span>
                   ))}
                   {title}

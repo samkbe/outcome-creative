@@ -7,17 +7,27 @@ interface Path {
   length: number;
 }
 
-export default function Hero() {
+export default function Hero({ loading }: { loading: boolean }) {
+  const [pathColor, setPathColor] = useState<string>();
+
+  useEffect(() => {
+    if (localStorage.theme === "dark") {
+      setPathColor("#313131");
+    } else {
+      setPathColor("#D7D7D7");
+    }
+  }, []);
+
   const draw = {
     hidden: (length: number) => ({
       strokeDasharray: length,
       strokeDashoffset: length,
-      stroke: "#D7D7D7",
+      stroke: pathColor,
     }),
     visible: (length: number, index: number) => ({
       strokeDashoffset: 0,
       strokeDasharray: length,
-      stroke: "#D7D7D7",
+      stroke: pathColor,
       transition: { duration: 2 + index / 2 },
     }),
   };
@@ -50,9 +60,7 @@ export default function Hero() {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      updatePathData();
-    }, 1000);
+    updatePathData();
 
     window.addEventListener("resize", updatePathData);
 
@@ -62,7 +70,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className="md:h-aboveFold-md px-4 lg:px-8 max-w-screen-2xl mx-auto md:pb-4 relative">
+    <div className="md:h-[100vh] px-4 lg:px-8 max-w-screen-2xl mx-auto md:pb-4 relative md:pt-[96px]">
       <svg
         ref={svgRef}
         width="100%"
@@ -96,10 +104,10 @@ export default function Hero() {
 function Title() {
   return (
     <>
-      <h1 className="absolute top-[19%] left-[32px] right-[32px] uppercase text-[9vw] leading-[7vw] 2xl:text-[145px] 2xl:leading-[145px]">
+      <h1 className="absolute top-[28%] left-[32px] right-[32px] uppercase text-[9vw] leading-[7vw] 2xl:text-[145px] 2xl:leading-[145px]">
         <span className="inline w-full pl-[15%]">a bridge</span>
         <span className="inline-block align-baseline h-[.75em] px-4">
-          <img className="h-full w-auto" src="/favicon.svg" />
+          <img className="h-full w-auto dark:invert" src="/favicon.svg" />
         </span>
         <span className="block right flex justify-end w-full">
           From concept
@@ -112,13 +120,13 @@ function Title() {
           actual business problems and resonate with your audience to drive
           brand engagement.
         </p>
-        <button className="uppercase bg-black text-white p-5 flex-shrink w-[202px] border-0">
+        <button className="uppercase bg-black text-white p-5 flex-shrink w-[202px] border-0 dark:bg-white dark:text-black">
           Work with us
         </button>
       </div>
       <img
         src="/large-arrow.svg"
-        className="absolute bottom-[16px] right-[32px]"
+        className="absolute bottom-[16px] right-[32px] dark:invert"
       />
     </>
   );
