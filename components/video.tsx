@@ -16,7 +16,7 @@ export default function Video() {
   return (
     <div
       ref={scrollRef}
-      className="max-w-screen-2xl flex flex-col mx-auto md:mb-36 mb-16"
+      className="max-w-screen-2xl flex flex-col mx-auto md:mb-36 mb-16 md:mt-56"
     >
       <h2 className="sub-heading lg:max-w-[1170px] px-4 lg:px-8">
         Our mission lies in bridging the gap between ideas and their true
