@@ -7,7 +7,7 @@ export default function Logos() {
   ];
 
   return (
-    <div className="flex px-4 lg:px-8 pt-28 flex-col md:flex-row md:flex-wrap">
+    <div className="flex px-4 lg:px-8 pt-28 flex-col md:flex-row md:flex-wrap md:pb-44">
       <h2 className="sub-heading pb-14 md:w-full md:order-1 md:max-w-[1144px]">
         companies we are proud to have collaborated with over the years.
       </h2>

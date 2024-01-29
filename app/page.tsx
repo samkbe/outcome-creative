@@ -5,6 +5,7 @@ import Video from "@/components/video";
 import Accordian from "@/components/accordion";
 import Projects from "@/components/projects";
 import Logos from "@/components/logos";
+import Footer from "@/components/footer";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Accordian />
       <Projects />
       <Logos />
+      <Footer />
     </>
   );
 }
