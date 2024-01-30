@@ -22,10 +22,10 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="text-black dark:bg-black dark:text-white">
+    <div className="text-black bg-white dark:bg-black dark:text-white">
       <NavBar loading={loading} />
       <Hero loading={loading} />
-      <div className={`${loading ? "invisible" : "block"}`}>
+      <div className={`${loading ? "hidden" : "block"}`}>
         <Video />
         <Accordian />
         <Projects />

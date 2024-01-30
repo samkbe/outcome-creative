@@ -1,33 +1,26 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { useTheme } from "./themeContext";
 
-interface Path {
+type Path = {
   d: string;
   length: number;
-}
+};
 
 export default function Hero({ loading }: { loading: boolean }) {
-  const [pathColor, setPathColor] = useState<string>();
+  const [containerWidth, setContainerWidth] = useState(0);
 
-  useEffect(() => {
-    if (localStorage.theme === "dark") {
-      setPathColor("#313131");
-    } else {
-      setPathColor("#D7D7D7");
-    }
-  }, []);
+  const { theme } = useTheme();
 
   const draw = {
     hidden: (length: number) => ({
       strokeDasharray: length,
       strokeDashoffset: length,
-      stroke: pathColor,
     }),
     visible: (length: number, index: number) => ({
       strokeDashoffset: 0,
       strokeDasharray: length,
-      stroke: pathColor,
       transition: { duration: 2 + index / 2 },
     }),
   };
@@ -51,6 +44,8 @@ export default function Hero({ loading }: { loading: boolean }) {
 
   const updatePathData = () => {
     if (svgRef.current) {
+      setContainerWidth(svgRef.current.clientWidth);
+
       const newPaths = paths.map((path, index) => {
         const svgPath = svgRef.current?.querySelectorAll("path")[index];
         return svgPath ? { ...path, length: svgPath.getTotalLength() } : path;
@@ -70,8 +65,9 @@ export default function Hero({ loading }: { loading: boolean }) {
   }, []);
 
   return (
-    <div className="md:h-[100vh] px-4 lg:px-8 max-w-screen-2xl mx-auto md:pb-4 relative md:pt-[96px]">
+    <div className="md:h-[100vh] px-4 lg:px-8 max-w-screen-2xl mx-auto md:pb-4 relative md:pt-[96px] grid grid-cols-heroGridCols grid-rows-heroGridRows">
       <svg
+        className="absolute top-0 left-0 right-0 px-4 lg:px-8 md:pb-4 md:pt-[96px]"
         ref={svgRef}
         width="100%"
         height="100%"
@@ -83,6 +79,7 @@ export default function Hero({ loading }: { loading: boolean }) {
         {paths.map((path, index) => {
           return (
             <motion.path
+              stroke={theme === "dark" ? "#313131" : "#D7D7D7"}
               key={index}
               d={path.d}
               stroke-miterlimit="10"
@@ -96,18 +93,54 @@ export default function Hero({ loading }: { loading: boolean }) {
           );
         })}
       </svg>
-      <Title />
+      <Title containerWidth={containerWidth} />
     </div>
   );
 }
 
-function Title() {
+function Title({ containerWidth }: { containerWidth: number }) {
+  const hexagonInitialX = -768;
+  const polygonInitialX = 768 / 2;
+
+  const { theme } = useTheme();
+
   return (
     <>
       <h1 className="absolute top-[28%] left-[32px] right-[32px] uppercase text-[9vw] leading-[7vw] 2xl:text-[145px] 2xl:leading-[145px]">
         <span className="inline w-full pl-[15%]">a bridge</span>
-        <span className="inline-block align-baseline h-[.75em] px-4">
-          <img className="h-full w-auto dark:invert" src="/favicon.svg" />
+        <span className="inline-flex align-baseline h-[.75em] px-4">
+          <motion.svg
+            className="h-full w-auto dark:invert  mix-blend-difference"
+            width="100%"
+            height="100%"
+            viewBox="0 0 114 99"
+            fill="#000000"
+            xmlns="http://www.w3.org/2000/svg"
+            initial={{ x: hexagonInitialX, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 2.5 }}
+          >
+            <path
+              d="M113.324 49.5L85.0742 99L28.5742 99L0.324232 49.5L28.5742 -3.70454e-06L85.0742 -1.23485e-06L113.324 49.5Z"
+              fill={theme === "dark" ? "black" : "white"}
+            />
+          </motion.svg>
+          <motion.svg
+            className="h-full w-auto dark:invert ml-[-22%] mix-blend-difference"
+            width="100%"
+            height="100%"
+            viewBox="0 0 114 99"
+            fill="#000000"
+            xmlns="http://www.w3.org/2000/svg"
+            initial={{ x: polygonInitialX, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 2.5 }}
+          >
+            <path
+              d="M52.5 0L105 37.8146L84.9468 99H20.0532L0 37.8146L52.5 0Z"
+              fill={theme === "dark" ? "black" : "white"}
+            />
+          </motion.svg>
         </span>
         <span className="block right flex justify-end w-full">
           From concept

@@ -1,26 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTheme } from "./themeContext";
 import Image from "next/image";
 import logo from "../public/outcome-creative-logo.svg";
 
 export default function NavBar({ loading }: { loading: boolean }) {
-  const [theme, setTheme] = useState<string>(
-    window.localStorage.getItem("theme") || "light"
-  );
+  // const [theme, setTheme] = useState<string>(
+  //   window.localStorage.getItem("theme") || "light"
+  // );
 
-  useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    window.localStorage.setItem("theme", theme);
-  }, [theme]);
+  // useEffect(() => {
+  //   if (theme === "dark") {
+  //     document.documentElement.classList.add("dark");
+  //   } else {
+  //     document.documentElement.classList.remove("dark");
+  //   }
+  //   window.localStorage.setItem("theme", theme);
+  // }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };
+  // const toggleTheme = () => {
+  //   setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  // };
+
+  const { theme, toggleTheme } = useTheme();
 
   const navbarItems = [
     {

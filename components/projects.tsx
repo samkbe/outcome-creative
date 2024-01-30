@@ -41,9 +41,9 @@ export default function Projects() {
       <div className="overflow-x-hidden w-full max-w-screen-2xl">
         <div className="flex flex-row animate-scroll w-[2400px] md:w-[3120px] box-border">
           {[...projects, ...projects].map(
-            ({ imageSrc, title, symbols, bodyText }) => (
+            ({ imageSrc, title, symbols, bodyText }, index) => (
               <div
-                key={title}
+                key={title + index}
                 className="px-2 w-[300px] md:w-[390px] box-border"
               >
                 <div className="relative mb-2 md:mb-5">

@@ -1,8 +1,10 @@
+"use client";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { ThemeProvider } from "../components/themeContext";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Outcome Creative",
   description: "Outcome Creative Description",
 };
@@ -47,9 +49,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <link rel="icon" href="/favicon.svg" sizes="any" />
-      <body className={aeonik.variable}>{children}</body>
-    </html>
+    <ThemeProvider>
+      <html lang="en">
+        <link rel="icon" href="/favicon.svg" sizes="any" />
+        <body className={aeonik.variable + " dark:bg-black"}>{children}</body>
+      </html>
+    </ThemeProvider>
   );
 }
