@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useTheme } from "./themeContext";
 
 export default function Footer() {
   const paths = [
@@ -17,20 +17,12 @@ export default function Footer() {
     { d: "M1 773.814H1377", length: 1377 },
   ];
 
-  const [pathColor, setPathColor] = useState<string>();
-
-  useEffect(() => {
-    if (localStorage.theme === "dark") {
-      setPathColor("#313131");
-    } else {
-      setPathColor("#D7D7D7");
-    }
-  }, []);
+  const { theme } = useTheme();
 
   return (
     <div className="md:h-aboveFold-md px-4 lg:px-8 max-w-screen-2xl mx-auto md:pb-4 relative grid grid-cols-heroGridCols grid-rows-heroGridRows md:pb-4">
       <div className="z-50 col-start-1 row-start-1 col-end-4 font-medium uppercase text-[2vw] leading-[1.75vw] 2xl:text-[36px] 2xl:leading-[36px]">
-        transform your vision into reality with us.
+        connect with us today
       </div>
       <div className="row-span-1 row-end-3 col-start-3 my-auto pl-10 uppercase text-[5vw] leading-[4.5vw] 2xl:text-[80px] 2xl:leading-[80px] z-10">
         contact@
@@ -45,12 +37,7 @@ export default function Footer() {
           <p>twitter ↗</p>
         </a>
       </div>
-      <div className="col-start-2 row-start-4 pl-[8vw] flex flex-col">
-        {/* <p>Test</p>
-        <p>Test</p>
-        <p>Test</p>
-        <p>Test</p> */}
-      </div>
+      <div className="col-start-2 row-start-4 pl-[8vw] flex flex-col"></div>
       <img
         src="/large-arrow.svg"
         className="absolute md:bottom-[16px] right-[32px] rotate-180 dark:invert"
@@ -65,7 +52,11 @@ export default function Footer() {
         className="absolute top-0 left-0 right-0 px-4 lg:px-8 md:pb-4"
       >
         {paths.map(({ d }) => (
-          <path d={d} key={d} stroke={pathColor} />
+          <path
+            d={d}
+            key={d}
+            stroke={theme === "dark" ? "#313131" : "#D7D7D7"}
+          />
         ))}
       </svg>
       <p className="absolute md:bottom-[16px] left-[32px] underline font-medium text-[14px] uppercase">

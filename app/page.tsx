@@ -11,7 +11,7 @@ import Logos from "@/components/logos";
 import Footer from "@/components/footer";
 
 export default function Home() {
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {

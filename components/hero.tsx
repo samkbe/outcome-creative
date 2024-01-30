@@ -149,9 +149,9 @@ function Title({ containerWidth }: { containerWidth: number }) {
       </h1>
       <div className="absolute bottom-[16px] left-[32px] flex flex-col text-[22px] leading-[22px] font-[300]">
         <p className="max-w-[448px] text-left pb-5">
-          Branding, content, and websites that go beyond creativity to solve
-          actual business problems and resonate with your audience to drive
-          brand engagement.
+          We are Outcome Creative. A strategic branding, design, and business
+          development shop that toes the line between solving for creativity and
+          growth.
         </p>
         <button className="uppercase bg-black text-white p-5 flex-shrink w-[202px] border-0 dark:bg-white dark:text-black">
           Work with us
