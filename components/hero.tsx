@@ -100,7 +100,7 @@ export default function Hero({ loading, mobileMenuOpen }: HeroProps) {
               stroke={theme === "dark" ? "#313131" : "#D7D7D7"}
               key={index}
               d={path.d}
-              stroke-miterlimit="10"
+              strokeMiterlimit="10"
               variants={{
                 hidden: draw.hidden(path.length),
                 visible: draw.visible(path.length, index),
@@ -128,7 +128,7 @@ export default function Hero({ loading, mobileMenuOpen }: HeroProps) {
               stroke={theme === "dark" ? "#313131" : "#D7D7D7"}
               key={index}
               d={path.d}
-              stroke-miterlimit="10"
+              strokeMiterlimit="10"
               variants={{
                 hidden: draw.hidden(path.length),
                 visible: draw.visible(path.length, index),

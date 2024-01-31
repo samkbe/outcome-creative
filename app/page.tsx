@@ -10,14 +10,14 @@ import Logos from "@/components/logos";
 import Footer from "@/components/footer";
 
 export default function Home() {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 7500);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -34,7 +34,7 @@ export default function Home() {
         setMobileMenuOpen={setMobileMenuOpen}
         loading={loading}
       />
-      <div className={`${loading ? "hidden" : "block"}`}>
+      <div id="scroll" className={`${loading ? "hidden" : "block"}`}>
         <Video />
         <Accordian />
         <Projects />

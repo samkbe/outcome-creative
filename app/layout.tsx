@@ -1,6 +1,8 @@
 "use client";
+import { useEffect } from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Scrollbar from "smooth-scrollbar";
 import "./globals.css";
 import { ThemeProvider } from "../components/themeContext";
 
@@ -48,6 +50,20 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  useEffect(() => {
+    // const scroll = document.getElementById("#scroll");
+
+    // if (!scroll) return;
+
+    // Scrollbar.init(scroll, {
+    //   damping: 0.1,
+    // });
+
+    Scrollbar.init(document.body, {
+      damping: 0.05,
+    });
+  }, []);
+
   return (
     <ThemeProvider>
       <html lang="en">
