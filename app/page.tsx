@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-
 import "./globals.css";
 import NavBar from "@/components/navbar";
 import Hero from "@/components/hero";
@@ -13,6 +12,8 @@ import Footer from "@/components/footer";
 export default function Home() {
   const [loading, setLoading] = useState<boolean>(false);
 
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -23,8 +24,16 @@ export default function Home() {
 
   return (
     <div className="text-black bg-white dark:bg-black dark:text-white">
-      <NavBar loading={loading} />
-      <Hero loading={loading} />
+      <NavBar
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+        loading={loading}
+      />
+      <Hero
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+        loading={loading}
+      />
       <div className={`${loading ? "hidden" : "block"}`}>
         <Video />
         <Accordian />

@@ -28,9 +28,11 @@ module.exports = {
         "aboveFold-md": "calc(100vh - 96px)",
       },
       gridTemplateColumns: {
+        mobileHeroGridCols: "21% 31% 48%",
         heroGridCols: "9% 11% 14% 17% 22% 27%",
       },
       gridTemplateRows: {
+        mobileHeroGridRows: "18% 22% 27% 34%",
         heroGridRows: "18% 22% 27% 34%",
       },
       animation: {

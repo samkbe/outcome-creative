@@ -1,44 +1,24 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { useTheme } from "./themeContext";
+import { navbarItems } from "@/content/navbarItems";
 import Image from "next/image";
 import logo from "../public/outcome-creative-logo.svg";
 
-export default function NavBar({ loading }: { loading: boolean }) {
-  // const [theme, setTheme] = useState<string>(
-  //   window.localStorage.getItem("theme") || "light"
-  // );
+type HamburgerMenuProps = {
+  mobileMenuOpen: boolean;
+  setMobileMenuOpen: Dispatch<SetStateAction<boolean>>;
+};
+interface NavBarProps extends HamburgerMenuProps {
+  loading: boolean;
+}
 
-  // useEffect(() => {
-  //   if (theme === "dark") {
-  //     document.documentElement.classList.add("dark");
-  //   } else {
-  //     document.documentElement.classList.remove("dark");
-  //   }
-  //   window.localStorage.setItem("theme", theme);
-  // }, [theme]);
-
-  // const toggleTheme = () => {
-  //   setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  // };
-
+export default function NavBar({
+  loading,
+  mobileMenuOpen,
+  setMobileMenuOpen,
+}: NavBarProps) {
   const { theme, toggleTheme } = useTheme();
-
-  const navbarItems = [
-    {
-      text: "about",
-      url: "/#about",
-    },
-    {
-      text: "services",
-      url: "/#services",
-    },
-    {
-      text: "projects",
-      url: "/#projects",
-    },
-  ];
 
   return (
     <div
@@ -46,7 +26,7 @@ export default function NavBar({ loading }: { loading: boolean }) {
         loading ? "invisible" : "fixed"
       }`}
     >
-      <nav className="px-4 lg:px-8 md:h-24 flex items-center justify-between max-w-screen-2xl mx-auto">
+      <nav className="px-4 lg:px-8 h-[64px] md:h-24 flex items-center justify-between max-w-screen-2xl mx-auto">
         <Image
           className="dark:invert"
           width={173}
@@ -54,7 +34,7 @@ export default function NavBar({ loading }: { loading: boolean }) {
           src={logo}
           alt="Outcome Creative Logo"
         />
-        <div className="flex justify-end w-full">
+        <div className="hidden md:flex justify-end w-full">
           <ul className="flex gap-10">
             {navbarItems.map(({ url, text }) => (
               <NavItem key={url} url={url} text={text} />
@@ -76,6 +56,10 @@ export default function NavBar({ loading }: { loading: boolean }) {
               }
             />
           </div>
+          <HamburgerMenu
+            mobileMenuOpen={mobileMenuOpen}
+            setMobileMenuOpen={setMobileMenuOpen}
+          />
         </div>
       </nav>
     </div>
@@ -87,6 +71,35 @@ function NavItem({ url, text }: { url: string; text: string }) {
     <a href={url}>
       <li>{text}</li>
     </a>
+  );
+}
+
+function HamburgerMenu({
+  mobileMenuOpen,
+  setMobileMenuOpen,
+}: HamburgerMenuProps) {
+  const genericHamburgerLine = `h-[6px] md:h-[7px] w-[44px] md:w-[52px] my-[3px] bg-black transition ease transform duration-300`;
+
+  return (
+    <button
+      onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+      className="lg:hidden flex flex-col h-12 w-12 rounded justify-center items-center -mb-3"
+    >
+      <div
+        className={`${genericHamburgerLine} ${
+          mobileMenuOpen
+            ? "rotate-45 translate-y-[12px] md:translate-y-[14px]"
+            : ""
+        }`}
+      />
+      <div
+        className={`${genericHamburgerLine} ${
+          mobileMenuOpen
+            ? "-rotate-45 -translate-y-[12px] md:-translate-y-[13px]"
+            : ""
+        }`}
+      />
+    </button>
   );
 }
 
@@ -114,5 +127,5 @@ function NycTime() {
     return () => clearInterval(timer);
   }, []);
 
-  return <p>{time}</p>;
+  return <p className="hidden md:block">{time}</p>;
 }

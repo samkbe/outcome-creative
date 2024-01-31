@@ -1,14 +1,23 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Dispatch, SetStateAction } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "./themeContext";
+import { navbarItems } from "@/content/navbarItems";
 
 type Path = {
   d: string;
   length: number;
 };
 
-export default function Hero({ loading }: { loading: boolean }) {
+type HamburgerMenuProps = {
+  mobileMenuOpen: boolean;
+  setMobileMenuOpen: Dispatch<SetStateAction<boolean>>;
+};
+interface HeroProps extends HamburgerMenuProps {
+  loading: boolean;
+}
+
+export default function Hero({ loading, mobileMenuOpen }: HeroProps) {
   const { theme } = useTheme();
 
   const draw = {
@@ -74,9 +83,9 @@ export default function Hero({ loading }: { loading: boolean }) {
   }, []);
 
   return (
-    <div className="h-screen md:h-[60vh] lg:h-screen px-4 lg:px-8 max-w-screen-2xl md:mx-auto md:pb-4 relative md:pt-[96px] grid grid-cols-heroGridCols grid-rows-heroGridRows">
+    <div className="h-screen md:h-[60vh] lg:h-screen px-4 pt-[67px] lg:px-8 max-w-screen-2xl md:mx-auto pb-4 relative md:pt-[96px] grid grid-cols-mobileHeroGridCols grid-rows-mobileHeroGridRows md:grid-cols-heroGridCols md:grid-rows-heroGridRows">
       <svg
-        className="md:hidden pt-[67px] absolute top-0 left-0 right-0 px-4"
+        className="md:hidden pt-[67px] absolute top-0 left-0 right-0 px-4 pb-4"
         ref={mobileSvgRef}
         width="100%"
         height="100%"
@@ -130,8 +139,22 @@ export default function Hero({ loading }: { loading: boolean }) {
           );
         })}
       </svg>
-      <Title />
+      {!mobileMenuOpen ? <Title /> : <MobileMenu />}
     </div>
+  );
+}
+
+function MobileMenu() {
+  return (
+    <nav className="text-[36px] leading-[36px] uppercase z-10 row-start-2 mt--2">
+      <ul>
+        {navbarItems.map(({ text, url }) => (
+          <a className="" key={url} href={url}>
+            <li className="mb-8">{text}</li>
+          </a>
+        ))}
+      </ul>
+    </nav>
   );
 }
 
