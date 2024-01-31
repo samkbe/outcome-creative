@@ -42,7 +42,7 @@ export default function Projects() {
               >
                 <div className="relative mb-2 md:mb-5">
                   <img className="w-full h-auto" src={imageSrc} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-tan to-10% " />
+                  <div className="absolute inset-0 bg-gradient-to-t from-tan to-10%" />
                 </div>
                 <p className="mb-1 md:mb-2 uppercase font-medium">
                   {symbols.map((symbol) => (

@@ -9,8 +9,6 @@ type Path = {
 };
 
 export default function Hero({ loading }: { loading: boolean }) {
-  const [containerWidth, setContainerWidth] = useState(0);
-
   const { theme } = useTheme();
 
   const draw = {
@@ -40,12 +38,23 @@ export default function Hero({ loading }: { loading: boolean }) {
     { d: "M1 773.814H1377", length: 1377 },
   ]);
 
+  const [mobilePaths, setMobilePaths] = useState<Path[]>([
+    { d: "M73.3398 1V583.649", length: 585 },
+    { d: "M180.998 1V583.649", length: 585 },
+    { d: "M360.996 103.098H1", length: 585 },
+    { d: "M360.996 229.43H1", length: 360 },
+    { d: "M360.996 387.345H1", length: 360 },
+    { d: "M1 1V583.649", length: 585 },
+    { d: "M1 583.649H360.996", length: 585 },
+    { d: "M360.996 583.649V1", length: 585 },
+    { d: "M360.996 1H1", length: 585 },
+  ]);
+
   const svgRef = useRef<SVGSVGElement>(null);
+  const mobileSvgRef = useRef<SVGSVGElement>(null);
 
   const updatePathData = () => {
     if (svgRef.current) {
-      setContainerWidth(svgRef.current.clientWidth);
-
       const newPaths = paths.map((path, index) => {
         const svgPath = svgRef.current?.querySelectorAll("path")[index];
         return svgPath ? { ...path, length: svgPath.getTotalLength() } : path;
@@ -65,9 +74,37 @@ export default function Hero({ loading }: { loading: boolean }) {
   }, []);
 
   return (
-    <div className="md:h-[100vh] px-4 lg:px-8 max-w-screen-2xl mx-auto md:pb-4 relative md:pt-[96px] grid grid-cols-heroGridCols grid-rows-heroGridRows">
+    <div className="h-screen md:h-[60vh] lg:h-screen px-4 lg:px-8 max-w-screen-2xl md:mx-auto md:pb-4 relative md:pt-[96px] grid grid-cols-heroGridCols grid-rows-heroGridRows">
       <svg
-        className="absolute top-0 left-0 right-0 px-4 lg:px-8 md:pb-4 md:pt-[96px]"
+        className="md:hidden pt-[67px] absolute top-0 left-0 right-0 px-4"
+        ref={mobileSvgRef}
+        width="100%"
+        height="100%"
+        viewBox="0 0 362 585"
+        fill="none"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {mobilePaths.map((path, index) => {
+          return (
+            <motion.path
+              stroke={theme === "dark" ? "#313131" : "#D7D7D7"}
+              key={index}
+              d={path.d}
+              stroke-miterlimit="10"
+              variants={{
+                hidden: draw.hidden(path.length),
+                visible: draw.visible(path.length, index),
+              }}
+              initial="hidden"
+              animate="visible"
+            />
+          );
+        })}
+      </svg>
+
+      <svg
+        className="absolute top-0 left-0 right-0 px-8 pb-4 pt-[96px] hidden md:block"
         ref={svgRef}
         width="100%"
         height="100%"
@@ -93,12 +130,12 @@ export default function Hero({ loading }: { loading: boolean }) {
           );
         })}
       </svg>
-      <Title containerWidth={containerWidth} />
+      <Title />
     </div>
   );
 }
 
-function Title({ containerWidth }: { containerWidth: number }) {
+function Title() {
   const hexagonInitialX = -768;
   const polygonInitialX = 768 / 2;
 
@@ -106,7 +143,7 @@ function Title({ containerWidth }: { containerWidth: number }) {
 
   return (
     <>
-      <h1 className="absolute top-[28%] left-[32px] right-[32px] uppercase text-[9vw] leading-[7vw] 2xl:text-[145px] 2xl:leading-[145px]">
+      <h1 className="absolute top-[29%] left-[32px] right-[32px] uppercase text-[9vw] leading-[7vw] 2xl:text-[145px] 2xl:leading-[145px]">
         <span className="inline w-full pl-[15%]">a bridge</span>
         <span className="inline-flex align-baseline h-[.75em] px-4">
           <motion.svg
@@ -147,13 +184,13 @@ function Title({ containerWidth }: { containerWidth: number }) {
         </span>
         <span className="block">to reality.</span>
       </h1>
-      <div className="absolute bottom-[16px] left-[32px] flex flex-col text-[22px] leading-[22px] font-[300]">
-        <p className="max-w-[448px] text-left pb-5">
+      <div className="absolute bottom-[16px] left-[32px] flex flex-col text-[1.5vw] leading-[1.5vw] font-[300] 2xl:text-[30px] 2xl:leading-[30px]">
+        <p className="max-w-[30%] text-left pb-5">
           We are Outcome Creative. A strategic branding, design, and business
           development shop that toes the line between solving for creativity and
           growth.
         </p>
-        <button className="uppercase bg-black text-white p-5 flex-shrink w-[202px] border-0 dark:bg-white dark:text-black">
+        <button className="uppercase bg-black text-white p-5 flex-shrink w-[202px] 2xl:w-[300px] border-0 dark:bg-white dark:text-black 2xl:text-[30px] 2xl:leading-[30px]">
           Work with us
         </button>
       </div>

@@ -2,6 +2,17 @@
 import { useState, Dispatch, SetStateAction } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
+type AccordianItemProps = {
+  openIndex: number | null;
+  title: string;
+  secondaryTitle: string;
+  subtext: string;
+  isSelected: boolean;
+  setOpenIndex: Dispatch<SetStateAction<number | null>>;
+  index: number;
+  symbolUrl: string;
+};
+
 export default function Accordian() {
   const accordionItems = [
     {
@@ -64,17 +75,6 @@ export default function Accordian() {
     </div>
   );
 }
-
-type AccordianItemProps = {
-  openIndex: number | null;
-  title: string;
-  secondaryTitle: string;
-  subtext: string;
-  isSelected: boolean;
-  setOpenIndex: Dispatch<SetStateAction<number | null>>;
-  index: number;
-  symbolUrl: string;
-};
 
 function AccordianItem({
   openIndex,
