@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
-import { useTheme } from "./themeContext";
+import { useTheme } from "../context/themeContext";
 import { navbarItems } from "@/content/navbarItems";
 import Image from "next/image";
 import logo from "../public/outcome-creative-logo.svg";
@@ -22,6 +22,7 @@ export default function NavBar({
 
   return (
     <div
+      id="navbar"
       className={`w-full fixed z-50 font-medium uppercase ${
         loading ? "invisible" : "fixed"
       }`}

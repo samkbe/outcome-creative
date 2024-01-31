@@ -1,18 +1,50 @@
 "use client";
-import { useScroll, useTransform, motion } from "framer-motion";
-import { useRef } from "react";
+import { useScroll, useTransform, motion, useMotionValue } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { useScrollContext } from "../context/scrollBarContext";
 
 export default function Video() {
-  const scrollRef = useRef(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const { scrollYProgress } = useScroll({
-    target: scrollRef,
-    offset: ["-300px", "0px"],
-  });
+  const scrollbar = useScrollContext();
+  const scrollYMotion = useMotionValue(0);
+  const [divPosition, setDivPosition] = useState(0);
+
+  useEffect(() => {
+    if (!scrollbar) return;
+
+    const calculateDivPosition = () => {
+      console.log("invoked: ", scrollRef);
+      if (!scrollRef.current) return;
+
+      const rect = scrollRef.current.getBoundingClientRect();
+      setDivPosition(rect.top + scrollbar.scrollTop);
+    };
+
+    window.addEventListener("resize", calculateDivPosition);
+    const timeoutId = setTimeout(calculateDivPosition, 1);
+
+    const updateScrollY = () => {
+      const scrollY = scrollbar.scrollTop;
+      scrollYMotion.set(scrollY);
+    };
+
+    scrollbar.addListener(updateScrollY);
+
+    return () => {
+      scrollbar.removeListener(updateScrollY);
+      window.removeEventListener("resize", calculateDivPosition);
+      clearTimeout(timeoutId);
+    };
+  }, [scrollbar, scrollYMotion]);
+
+  // const startAnimation = divPosition - window.innerHeight;
+  // const endAnimation = divPosition;
+  // console.log(startAnimation, endAnimation);
 
   const clipPathValue = useTransform(
-    scrollYProgress,
-    [0, 1],
+    scrollYMotion,
+    [divPosition, divPosition],
     ["inset(45% 45% 45% 45%)", "inset(0% 0% 0% 0%)"]
   );
 
@@ -48,11 +80,6 @@ export default function Video() {
             />
           </svg>
         </div>
-
-        {/* <img
-          className="absolute top-[50%] left-[50%] mix-blend-difference"
-          src="/favicon.svg"
-        /> */}
         <motion.video
           className="object-cover min-h-screen relative"
           autoPlay

@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef, Dispatch, SetStateAction } from "react";
 import { motion } from "framer-motion";
-import { useTheme } from "./themeContext";
+import { useTheme } from "../context/themeContext";
 import { navbarItems } from "@/content/navbarItems";
 
 type Path = {
@@ -139,14 +139,19 @@ export default function Hero({ loading, mobileMenuOpen }: HeroProps) {
           );
         })}
       </svg>
-      {!mobileMenuOpen ? <Title /> : <MobileMenu />}
+      <Title mobileMenuOpen={mobileMenuOpen} />
+      <MobileMenu mobileMenuOpen={mobileMenuOpen} />
     </div>
   );
 }
 
-function MobileMenu() {
+function MobileMenu({ mobileMenuOpen }: { mobileMenuOpen: boolean }) {
   return (
-    <nav className="text-[36px] leading-[36px] uppercase z-10 row-start-2 mt--2">
+    <nav
+      className={`${
+        !mobileMenuOpen && "hidden"
+      } text-[36px] leading-[36px] uppercase z-10 row-start-2 mt--2`}
+    >
       <ul>
         {navbarItems.map(({ text, url }) => (
           <a className="" key={url} href={url}>
@@ -158,7 +163,7 @@ function MobileMenu() {
   );
 }
 
-function Title() {
+function Title({ mobileMenuOpen }: { mobileMenuOpen: boolean }) {
   const hexagonInitialX = -768;
   const polygonInitialX = 768 / 2;
 
@@ -166,7 +171,11 @@ function Title() {
 
   return (
     <>
-      <h1 className="absolute top-[29%] left-[32px] right-[32px] uppercase text-[9vw] leading-[7vw] 2xl:text-[145px] 2xl:leading-[145px]">
+      <h1
+        className={` ${
+          mobileMenuOpen && "hidden"
+        } absolute top-[29%] left-[32px] right-[32px] uppercase text-[9vw] leading-[7vw] 2xl:text-[145px] 2xl:leading-[145px]`}
+      >
         <span className="inline w-full pl-[15%]">a bridge</span>
         <span className="inline-flex align-baseline h-[.75em] px-4">
           <motion.svg

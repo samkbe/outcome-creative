@@ -1,5 +1,5 @@
 "use client";
-import { useTheme } from "./themeContext";
+import { useTheme } from "../context/themeContext";
 
 export default function Footer() {
   const paths = [

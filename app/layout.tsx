@@ -1,10 +1,11 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Scrollbar from "smooth-scrollbar";
 import "./globals.css";
-import { ThemeProvider } from "../components/themeContext";
+import { ThemeProvider } from "../context/themeContext";
+import ScrollContext from "../context/scrollBarContext";
 
 const metadata: Metadata = {
   title: "Outcome Creative",
@@ -50,26 +51,45 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [scrollbar, setScrollbar] = useState<Scrollbar | null>(null);
+
   useEffect(() => {
-    // const scroll = document.getElementById("#scroll");
-
-    // if (!scroll) return;
-
-    // Scrollbar.init(scroll, {
-    //   damping: 0.1,
-    // });
-
-    Scrollbar.init(document.body, {
+    const scrollbarInstance = Scrollbar.init(document.body, {
       damping: 0.05,
     });
+
+    const fixed = document.getElementById("navbar");
+
+    scrollbarInstance.addListener((status) => {
+      const { offset } = status;
+
+      if (fixed) {
+        fixed.style.transform = `translateY(${offset.y}px)`;
+      }
+    });
+
+    // scrollbarInstance.addListener(({ offset }) => {
+    //   document.documentElement.style.setProperty(
+    //     "--scrollbar-position-y",
+    //     `${offset.y}px`
+    //   );
+    // });
+
+    setScrollbar(scrollbarInstance);
+
+    return () => {
+      if (scrollbar) scrollbar.destroy();
+    };
   }, []);
 
   return (
     <ThemeProvider>
-      <html lang="en">
-        <link rel="icon" href="/favicon.svg" sizes="any" />
-        <body className={aeonik.variable + " dark:bg-black"}>{children}</body>
-      </html>
+      <ScrollContext.Provider value={scrollbar}>
+        <html lang="en">
+          <link rel="icon" href="/favicon.svg" sizes="any" />
+          <body className={aeonik.variable + " dark:bg-black"}>{children}</body>
+        </html>
+      </ScrollContext.Provider>
     </ThemeProvider>
   );
 }

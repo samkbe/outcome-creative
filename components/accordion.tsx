@@ -11,6 +11,7 @@ type AccordianItemProps = {
   setOpenIndex: Dispatch<SetStateAction<number | null>>;
   index: number;
   symbolUrl: string;
+  character: string[];
 };
 
 export default function Accordian() {
@@ -21,6 +22,7 @@ export default function Accordian() {
       subtext:
         "Whether you are in the throes of building a new business or are long established and looking to bring the look and feel of your brand into today, we can help. Our team of graphic designers have worked with both Fortune 500 clients and budding startups on projects such as logo design and brand books to high volume digital ads.",
       symbolUrl: "/triangle.svg",
+      character: ["➀", "➊"],
     },
     {
       title: "website design & development",
@@ -28,6 +30,7 @@ export default function Accordian() {
       subtext:
         "A functional website is a necessary element for any successful business. Our full-stack engineers are equipped to design and build sites at all levels of complexity. Building a site while trying to run a business and manage a team can be taxing, give us a call and we’ll lighten the load.",
       symbolUrl: "/square.svg",
+      character: ["➁", "➋"],
     },
     {
       title: "photo & video production",
@@ -35,6 +38,7 @@ export default function Accordian() {
       subtext:
         "Having a robust content library for both consumer facing and B2B brands has become increasingly important. Our photo and video capabilities are extensive, from basic portrait captures and event photography to complex commercial shoots.",
       symbolUrl: "/polygon.svg",
+      character: ["➂", "➌"],
     },
     {
       title: "Social media & influencer strategy",
@@ -42,6 +46,7 @@ export default function Accordian() {
       subtext:
         "Activations around micro and macro influencers can bring significant value, and bring your company to the forefront of social dialogue and awareness. With a young and culturally tapped in team, we can help you build an influencer focused campaign, curate, and secure the champions you need.",
       symbolUrl: "/hexagon.svg",
+      character: ["➃", "➍"],
     },
     {
       title: "business development consulting",
@@ -49,6 +54,7 @@ export default function Accordian() {
       subtext:
         "Do you find yourself so focused on the work that when a project is over you find yourself scrambling for the next client or revenue stream? Our founder has developed successful cold outreach programs built for sustained growth with a proven record of deal sizes in the 7-figures. Inquire below to schedule a complimentary 1x1 meeting.",
       symbolUrl: "/circle.svg",
+      character: ["➄", "➎"],
     },
   ];
 
@@ -56,7 +62,7 @@ export default function Accordian() {
   return (
     <div>
       {accordionItems.map(
-        ({ title, secondaryTitle, subtext, symbolUrl }, index) => {
+        ({ title, secondaryTitle, subtext, symbolUrl, character }, index) => {
           return (
             <AccordianItem
               isSelected={index === openIndex}
@@ -68,6 +74,7 @@ export default function Accordian() {
               key={title}
               index={index}
               symbolUrl={symbolUrl}
+              character={character}
             />
           );
         }
@@ -77,6 +84,7 @@ export default function Accordian() {
 }
 
 function AccordianItem({
+  character,
   openIndex,
   title,
   isSelected,
@@ -102,7 +110,7 @@ function AccordianItem({
       <div className="w-full h-[1px] bg-black dark:bg-white" />
       <div className="my-7 lg:my-4 px-4 lg:px-8 flex md:flex-row flex-col relative justify-between max-w-screen-2xl w-full">
         <h3 className="uppercase font-medium text-base md:w-[40%] text-[16px] w-full">
-          {title}
+          {`${isSelected ? character[1] : character[0]} ${title}`}
         </h3>
         <AnimatePresence>
           {isSelected && (
