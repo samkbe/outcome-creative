@@ -17,13 +17,13 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 4000);
 
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="text-black bg-white dark:bg-black dark:text-white">
+    <div className="text-black bg-white dark:bg-black dark:text-white transition-colors">
       <NavBar
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}

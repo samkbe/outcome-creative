@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { useTheme } from "../context/themeContext";
-import { navbarItems } from "@/content/navbarItems";
+import { navbarItems } from "@/content/homeContent";
 import Image from "next/image";
 import logo from "../public/outcome-creative-logo.svg";
 
@@ -27,29 +27,27 @@ export default function NavBar({
         loading ? "invisible" : "fixed"
       }`}
     >
-      <nav className="px-4 lg:px-8 h-[64px] md:h-24 flex items-center justify-between max-w-screen-2xl mx-auto">
-        <Image
-          className="dark:invert"
-          width={173}
-          height={41}
-          src={logo}
+      <nav className="px-4 md:px-8 h-[64px] md:h-24 flex items-center justify-between max-w-screen-2xl mx-auto">
+        <img
+          className="dark:invert h-[27px] w-[113px] md:w-[173px] md:h-[41px]"
+          src="/outcome-creative-logo.svg"
           alt="Outcome Creative Logo"
         />
-        <div className="hidden md:flex justify-end w-full">
+        <div className="hidden md:flex justify-end w-full mr-4">
           <ul className="flex gap-10">
             {navbarItems.map(({ url, text }) => (
               <NavItem key={url} url={url} text={text} />
             ))}
           </ul>
         </div>
-        <div className="flex w-1/4 justify-end">
+        <div className="flex w-1/3 justify-end">
           <NycTime />
           <div
             onClick={() => toggleTheme()}
-            className="cursor-pointer ml-4 flex items-center"
+            className="cursor-pointer pr-4 md:pr-0 md:ml-4 flex items-center justify-center"
           >
             <img
-              className="w-auto h-[1em]"
+              className="w-auto h-[1.25em] md:h-[1em]"
               src={
                 theme === "light"
                   ? "/dark-mode-icon.svg"
@@ -79,25 +77,21 @@ function HamburgerMenu({
   mobileMenuOpen,
   setMobileMenuOpen,
 }: HamburgerMenuProps) {
-  const genericHamburgerLine = `h-[6px] md:h-[7px] w-[44px] md:w-[52px] my-[3px] bg-black transition ease transform duration-300`;
+  const genericHamburgerLine = `h-[2px] w-[47px] bg-black dark:bg-white transition-all ease transform duration-300`;
 
   return (
     <button
       onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-      className="lg:hidden flex flex-col h-12 w-12 rounded justify-center items-center -mb-3"
+      className="md:hidden flex flex-col h-12 w-12 rounded justify-center items-center"
     >
       <div
         className={`${genericHamburgerLine} ${
-          mobileMenuOpen
-            ? "rotate-45 translate-y-[12px] md:translate-y-[14px]"
-            : ""
+          mobileMenuOpen ? "rotate-45 translate-y-[7px] w-[40px]" : ""
         }`}
       />
       <div
-        className={`${genericHamburgerLine} ${
-          mobileMenuOpen
-            ? "-rotate-45 -translate-y-[12px] md:-translate-y-[13px]"
-            : ""
+        className={`${genericHamburgerLine} mt-2 ${
+          mobileMenuOpen ? "-rotate-45 -translate-y-[4px] w-[40px]" : ""
         }`}
       />
     </button>

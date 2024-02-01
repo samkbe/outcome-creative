@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef, Dispatch, SetStateAction } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "../context/themeContext";
-import { navbarItems } from "@/content/navbarItems";
+import { navbarItems } from "@/content/homeContent";
 
 type Path = {
   d: string;
@@ -35,24 +35,24 @@ export default function Hero({ loading, mobileMenuOpen }: HeroProps) {
   const [paths, setPaths] = useState<Path[]>([
     { d: "M1 0.814453H1377", length: 1377 },
     { d: "M1 0.814453V773.814", length: 773 },
-    { d: "M124.848 0.814453V773.814", length: 773 },
-    { d: "M277.498 0.814453V773.814", length: 773 },
-    { d: "M465 0.814453V773.814", length: 773 },
-    { d: "M697 0.814453V773.814", length: 773 },
-    { d: "M1003.3 0.814453V773.814", length: 773 },
+    { d: "M123.93 0.814453V773.814", length: 773 },
+    { d: "M275.40 0.814453V773.814", length: 773 },
+    { d: "M468.18 0.814453V773.814", length: 773 },
+    { d: "M702.27 0.814453V773.814", length: 773 },
+    { d: "M1005.21 0.814453V773.814", length: 773 },
     { d: "M1377 0.814453V773.814", length: 773 },
-    { d: "M1 136.267H1377", length: 1377 },
-    { d: "M1 303.871H1377", length: 1377 },
-    { d: "M1 513.378H1377", length: 1377 },
+    { d: "M1 139.29H1377", length: 1377 },
+    { d: "M1 309.53H1377", length: 1377 },
+    { d: "M1 518.46H1377", length: 1377 },
     { d: "M1 773.814H1377", length: 1377 },
   ]);
 
   const [mobilePaths, setMobilePaths] = useState<Path[]>([
-    { d: "M73.3398 1V583.649", length: 585 },
-    { d: "M180.998 1V583.649", length: 585 },
-    { d: "M360.996 103.098H1", length: 585 },
-    { d: "M360.996 229.43H1", length: 360 },
-    { d: "M360.996 387.345H1", length: 360 },
+    { d: "M75.81 1V583.649", length: 585 },
+    { d: "M187.72 1V583.649", length: 585 },
+    { d: "M360.996 105.06H1", length: 585 },
+    { d: "M360.996 233.46H1", length: 360 },
+    { d: "M360.996 391.04H1", length: 360 },
     { d: "M1 1V583.649", length: 585 },
     { d: "M1 583.649H360.996", length: 585 },
     { d: "M360.996 583.649V1", length: 585 },
@@ -83,7 +83,7 @@ export default function Hero({ loading, mobileMenuOpen }: HeroProps) {
   }, []);
 
   return (
-    <div className="h-screen md:h-[60vh] lg:h-screen px-4 pt-[67px] lg:px-8 max-w-screen-2xl md:mx-auto pb-4 relative md:pt-[96px] grid grid-cols-mobileHeroGridCols grid-rows-mobileHeroGridRows md:grid-cols-heroGridCols md:grid-rows-heroGridRows">
+    <div className="h-screen md:h-[80vh] lg:h-screen px-4 pt-[67px] lg:px-8 max-w-screen-2xl md:mx-auto pb-4 relative md:pt-[96px] grid grid-cols-mobileHeroGridCols grid-rows-mobileHeroGridRows md:grid-cols-heroGridCols md:grid-rows-heroGridRows">
       <svg
         className="md:hidden pt-[67px] absolute top-0 left-0 right-0 px-4 pb-4"
         ref={mobileSvgRef}
@@ -139,7 +139,7 @@ export default function Hero({ loading, mobileMenuOpen }: HeroProps) {
           );
         })}
       </svg>
-      <Title mobileMenuOpen={mobileMenuOpen} />
+      <Title mobileMenuOpen={mobileMenuOpen} loading={loading} />
       <MobileMenu mobileMenuOpen={mobileMenuOpen} />
     </div>
   );
@@ -149,8 +149,8 @@ function MobileMenu({ mobileMenuOpen }: { mobileMenuOpen: boolean }) {
   return (
     <nav
       className={`${
-        !mobileMenuOpen && "hidden"
-      } text-[36px] leading-[36px] uppercase z-10 row-start-2 mt--2`}
+        !mobileMenuOpen && "hidden opacity-0"
+      } text-[36px] leading-[36px] uppercase z-10 row-start-2 mt--2 md:hidden opacity-100 transition-opacity duration-300 ease-in-out`}
     >
       <ul>
         {navbarItems.map(({ text, url }) => (
@@ -163,7 +163,13 @@ function MobileMenu({ mobileMenuOpen }: { mobileMenuOpen: boolean }) {
   );
 }
 
-function Title({ mobileMenuOpen }: { mobileMenuOpen: boolean }) {
+function Title({
+  mobileMenuOpen,
+  loading,
+}: {
+  mobileMenuOpen: boolean;
+  loading: boolean;
+}) {
   const hexagonInitialX = -768;
   const polygonInitialX = 768 / 2;
 
@@ -172,12 +178,23 @@ function Title({ mobileMenuOpen }: { mobileMenuOpen: boolean }) {
   return (
     <>
       <h1
-        className={` ${
+        className={`${
           mobileMenuOpen && "hidden"
-        } absolute top-[29%] left-[32px] right-[32px] uppercase text-[9vw] leading-[7vw] 2xl:text-[145px] 2xl:leading-[145px]`}
+        } absolute top-[27%] md:top-[29%] left-[16px] right-[16px] md:left-[32px] md:right-[32px] uppercase text-[40px] leading-[40px] md:text-[9vw] md:leading-[7vw] 2xl:text-[145px] 2xl:leading-[145px]`}
       >
-        <span className="inline w-full pl-[15%]">a bridge</span>
-        <span className="inline-flex align-baseline h-[.75em] px-4">
+        {/* {!loading && ( */}
+        <motion.span
+          // initial={{ opacity: 0 }}
+          // animate={{ opacity: 1 }}
+          // transition={{ duration: 1 }}
+          className={`${
+            loading ? "invisible opacity-0" : "visible opacity-100"
+          } inline w-full md:pl-[15%] transition-opacity duration-300`}
+        >
+          a bridge
+        </motion.span>
+        {/* )} */}
+        <span className="inline-flex align-baseline h-[.75em] px-1 md:px-4">
           <motion.svg
             className="h-full w-auto dark:invert  mix-blend-difference"
             width="100%"
@@ -211,25 +228,59 @@ function Title({ mobileMenuOpen }: { mobileMenuOpen: boolean }) {
             />
           </motion.svg>
         </span>
-        <span className="block right flex justify-end w-full">
-          From concept
-        </span>
-        <span className="block">to reality.</span>
+        {!loading && (
+          <>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="block right flex md:justify-end w-full"
+            >
+              From concept
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="block flex justify-end w-full md:justify-start"
+            >
+              to reality.
+            </motion.span>
+          </>
+        )}
       </h1>
-      <div className="absolute bottom-[16px] left-[32px] flex flex-col text-[1.5vw] leading-[1.5vw] font-[300] 2xl:text-[30px] 2xl:leading-[30px]">
-        <p className="max-w-[30%] text-left pb-5">
-          We are Outcome Creative. A strategic branding, design, and business
-          development shop that toes the line between solving for creativity and
-          growth.
-        </p>
-        <button className="uppercase bg-black text-white p-5 flex-shrink w-[202px] 2xl:w-[300px] border-0 dark:bg-white dark:text-black 2xl:text-[30px] 2xl:leading-[30px]">
-          Work with us
-        </button>
-      </div>
-      <img
-        src="/large-arrow.svg"
-        className="absolute bottom-[16px] right-[32px] dark:invert"
-      />
+      {!loading ? (
+        <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="absolute bottom-[16px] left-[16px] md:left-[32px] flex flex-col text-[16px] md:text-[1.5vw] md:leading-[1.5vw] font-[300] 2xl:text-[30px] 2xl:leading-[30px]"
+          >
+            <p className="max-w-[50%] md:max-w-[30%] text-left pb-5">
+              We are Outcome Creative. A strategic branding, design, and
+              business development shop that toes the line between solving for
+              creativity and growth.
+            </p>
+            <button className="uppercase bg-black text-white p-5 flex-shrink w-[202px] 2xl:w-[300px] border-0 dark:bg-white dark:text-black 2xl:text-[30px] 2xl:leading-[30px]">
+              Work with us
+            </button>
+          </motion.div>
+          <img
+            src="/large-arrow.svg"
+            className="h-[35px] w-auto md:h-auto absolute bottom-[16px] right-[16px] md:right-[32px] dark:invert"
+          />
+        </>
+      ) : (
+        <>
+          <p className="text-[36px] leading-[36px] uppercase absolute bottom-[16px] left-[16px] md:left-[32px]">
+            loading...
+          </p>
+          <p className="text-[36px] leading-[36px] uppercase absolute bottom-[16px] right-[16px] md:right-[32px]">
+            25%
+          </p>
+        </>
+      )}
     </>
   );
 }
