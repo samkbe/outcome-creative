@@ -14,15 +14,15 @@ export default function Video() {
     if (!scrollbar) return;
 
     const calculateDivPosition = () => {
-      console.log("invoked: ", scrollRef);
       if (!scrollRef.current) return;
 
       const rect = scrollRef.current.getBoundingClientRect();
       setDivPosition(rect.top + scrollbar.scrollTop);
     };
 
+    calculateDivPosition();
+
     window.addEventListener("resize", calculateDivPosition);
-    const timeoutId = setTimeout(calculateDivPosition, 1);
 
     const updateScrollY = () => {
       const scrollY = scrollbar.scrollTop;
@@ -34,17 +34,16 @@ export default function Video() {
     return () => {
       scrollbar.removeListener(updateScrollY);
       window.removeEventListener("resize", calculateDivPosition);
-      clearTimeout(timeoutId);
     };
   }, [scrollbar, scrollYMotion]);
 
-  // const startAnimation = divPosition - window.innerHeight;
-  // const endAnimation = divPosition;
-  // console.log(startAnimation, endAnimation);
+  const startAnimation = divPosition - window.innerHeight;
+  const endAnimation = divPosition;
+  console.log(startAnimation, endAnimation);
 
   const clipPathValue = useTransform(
     scrollYMotion,
-    [divPosition, divPosition],
+    [startAnimation, endAnimation],
     ["inset(45% 45% 45% 45%)", "inset(0% 0% 0% 0%)"]
   );
 
