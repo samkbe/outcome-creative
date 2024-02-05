@@ -21,7 +21,9 @@ export default function Video() {
       setDivPosition(rect.top + scrollbar.scrollTop);
     };
 
-    calculateDivPosition();
+    setTimeout(() => {
+      calculateDivPosition();
+    }, 4001);
 
     window.addEventListener("resize", calculateDivPosition);
 
