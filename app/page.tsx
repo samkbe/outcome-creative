@@ -15,11 +15,10 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 4000);
-
-    return () => clearTimeout(timer);
+    // const timer = setTimeout(() => {
+    //   setLoading(false);
+    // }, 4000);
+    // return () => clearTimeout(timer);
   }, []);
 
   return (

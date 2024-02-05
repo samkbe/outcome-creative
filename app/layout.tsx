@@ -12,7 +12,7 @@ const metadata: Metadata = {
   description: "Outcome Creative Description",
 };
 
-export const aeonik = localFont({
+const aeonik = localFont({
   src: [
     {
       path: "../public/fonts/Aeonik-Air.woff2",
@@ -67,13 +67,6 @@ export default function RootLayout({
         fixed.style.transform = `translateY(${offset.y}px)`;
       }
     });
-
-    // scrollbarInstance.addListener(({ offset }) => {
-    //   document.documentElement.style.setProperty(
-    //     "--scrollbar-position-y",
-    //     `${offset.y}px`
-    //   );
-    // });
 
     setScrollbar(scrollbarInstance);
 

@@ -19,13 +19,18 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
+    console.log("useEffect 1 run: ", theme);
+
     const storedTheme = window.localStorage.getItem("theme");
+    console.log("StoredTheme: ", storedTheme);
     if (storedTheme) {
       setTheme(storedTheme);
     }
+    console.log("useEffect 1 end: ", theme);
   }, []);
 
   useEffect(() => {
+    console.log("UseEffect 2 run: ", theme);
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {

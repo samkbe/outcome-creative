@@ -9,6 +9,7 @@ export default function Video() {
   const scrollbar = useScrollContext();
   const scrollYMotion = useMotionValue(0);
   const [divPosition, setDivPosition] = useState(0);
+  const [startAnimation, setStartAnimation] = useState(divPosition);
 
   useEffect(() => {
     if (!scrollbar) return;
@@ -37,9 +38,11 @@ export default function Video() {
     };
   }, [scrollbar, scrollYMotion]);
 
-  const startAnimation = divPosition - window.innerHeight;
+  useEffect(() => {
+    setStartAnimation(divPosition - window.innerHeight);
+  }, [divPosition]);
+
   const endAnimation = divPosition;
-  console.log(startAnimation, endAnimation);
 
   const clipPathValue = useTransform(
     scrollYMotion,
