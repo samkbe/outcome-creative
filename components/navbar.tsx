@@ -68,15 +68,19 @@ function NavItem({ url, text }: { url: string; text: string }) {
   const scrollbar = useScrollContext();
 
   return (
-    <li
-      key={text}
-      onClick={() => {
-        const element = document.getElementById(url);
-        if (element) scrollbar?.scrollIntoView(element);
-      }}
-    >
-      {text}
-    </li>
+    <div className="overflow-hidden h-[22px] text-[22px]">
+      <li className="">{text}</li>
+      <li
+        className=""
+        key={text}
+        onClick={() => {
+          const element = document.getElementById(url);
+          if (element) scrollbar?.scrollIntoView(element);
+        }}
+      >
+        {text}
+      </li>
+    </div>
   );
 }
 

@@ -21,7 +21,10 @@ export default function Logos() {
               "border-b mb-14 md:mb-0 md:border-b-0"
             }`}
           >
-            <img className="md:h-[30px] dark:invert" src={logoUrl} />
+            <img
+              className="max-w-[290px] md:h-[30px] dark:invert"
+              src={logoUrl}
+            />
           </div>
         ))}
       </div>
