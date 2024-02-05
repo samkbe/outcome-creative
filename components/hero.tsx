@@ -175,6 +175,23 @@ function Title({
 
   const { theme } = useTheme();
 
+  const [percentValue, setPercentValue] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setPercentValue((currentPercent) => {
+        const nextPercent = currentPercent + 1;
+        if (nextPercent >= 100) {
+          clearInterval(intervalId);
+          return 100;
+        }
+        return nextPercent;
+      });
+    }, 40);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <>
       <h1
@@ -204,7 +221,7 @@ function Title({
             xmlns="http://www.w3.org/2000/svg"
             initial={{ x: hexagonInitialX, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 2.5 }}
+            transition={{ duration: 3.9 }}
           >
             <path
               d="M113.324 49.5L85.0742 99L28.5742 99L0.324232 49.5L28.5742 -3.70454e-06L85.0742 -1.23485e-06L113.324 49.5Z"
@@ -220,7 +237,7 @@ function Title({
             xmlns="http://www.w3.org/2000/svg"
             initial={{ x: polygonInitialX, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 2.5 }}
+            transition={{ duration: 3.9 }}
           >
             <path
               d="M52.5 0L105 37.8146L84.9468 99H20.0532L0 37.8146L52.5 0Z"
@@ -273,11 +290,15 @@ function Title({
         </>
       ) : (
         <>
-          <p className="text-[36px] leading-[36px] uppercase absolute bottom-[16px] left-[16px] md:left-[32px]">
+          <p
+            className={`${
+              loading ? "animate-pulse" : ""
+            } text-[36px] leading-[36px] uppercase absolute bottom-[16px] left-[16px] md:left-[32px]`}
+          >
             loading...
           </p>
           <p className="text-[36px] leading-[36px] uppercase absolute bottom-[16px] right-[16px] md:right-[32px]">
-            25%
+            {percentValue}%
           </p>
         </>
       )}
