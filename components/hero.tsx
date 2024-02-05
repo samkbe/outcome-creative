@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, Dispatch, SetStateAction } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "../context/themeContext";
 import { navbarItems } from "@/content/homeContent";
+import { useScrollContext } from "../context/scrollBarContext";
 
 type Path = {
   d: string;
@@ -146,6 +147,8 @@ export default function Hero({ loading, mobileMenuOpen }: HeroProps) {
 }
 
 function MobileMenu({ mobileMenuOpen }: { mobileMenuOpen: boolean }) {
+  const scrollbar = useScrollContext();
+
   return (
     <nav
       className={`${
@@ -154,9 +157,16 @@ function MobileMenu({ mobileMenuOpen }: { mobileMenuOpen: boolean }) {
     >
       <ul>
         {navbarItems.map(({ text, url }) => (
-          <a className="" key={url} href={url}>
-            <li className="mb-8">{text}</li>
-          </a>
+          <li
+            key={text}
+            onClick={() => {
+              const element = document.getElementById(url);
+              if (element) scrollbar?.scrollIntoView(element);
+            }}
+            className="mb-8"
+          >
+            {text}
+          </li>
         ))}
       </ul>
     </nav>
@@ -176,6 +186,8 @@ function Title({
   const { theme } = useTheme();
 
   const [percentValue, setPercentValue] = useState(0);
+
+  const scrollbar = useScrollContext();
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -279,7 +291,13 @@ function Title({
               business development shop that toes the line between solving for
               creativity and growth.
             </p>
-            <button className="uppercase bg-black text-white p-5 flex-shrink w-[202px] 2xl:w-[300px] border-0 dark:bg-white dark:text-black 2xl:text-[30px] 2xl:leading-[30px]">
+            <button
+              onClick={() => {
+                const footer = document.getElementById("footer");
+                if (footer) scrollbar?.scrollIntoView(footer);
+              }}
+              className="uppercase bg-black text-white p-5 flex-shrink w-[202px] 2xl:w-[300px] border-0 dark:bg-white dark:text-black 2xl:text-[30px] 2xl:leading-[30px]"
+            >
               Work with us
             </button>
           </motion.div>

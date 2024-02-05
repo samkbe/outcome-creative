@@ -2,8 +2,7 @@
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { useTheme } from "../context/themeContext";
 import { navbarItems } from "@/content/homeContent";
-import Image from "next/image";
-import logo from "../public/outcome-creative-logo.svg";
+import { useScrollContext } from "../context/scrollBarContext";
 
 type HamburgerMenuProps = {
   mobileMenuOpen: boolean;
@@ -66,10 +65,18 @@ export default function NavBar({
 }
 
 function NavItem({ url, text }: { url: string; text: string }) {
+  const scrollbar = useScrollContext();
+
   return (
-    <a href={url}>
-      <li>{text}</li>
-    </a>
+    <li
+      key={text}
+      onClick={() => {
+        const element = document.getElementById(url);
+        if (element) scrollbar?.scrollIntoView(element);
+      }}
+    >
+      {text}
+    </li>
   );
 }
 

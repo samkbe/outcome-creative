@@ -32,7 +32,10 @@ export default function Footer() {
   const { theme } = useTheme();
 
   return (
-    <div className="h-aboveFold md:h-aboveFold-md px-4 lg:px-8 max-w-screen-2xl mx-auto grid grid-cols-mobileHeroGridCols grid-rows-mobileHeroGridRows md:grid-cols-heroGridCols md:grid-rows-heroGridRows pb-4 relative">
+    <div
+      id="footer"
+      className="h-aboveFold md:h-aboveFold-md px-4 lg:px-8 max-w-screen-2xl mx-auto grid grid-cols-mobileHeroGridCols grid-rows-mobileHeroGridRows md:grid-cols-heroGridCols md:grid-rows-heroGridRows pb-4 relative"
+    >
       <div className="z-50 col-start-1 row-start-1 col-end-4 font-medium uppercase text-[24px] md:text-[2vw] md:leading-[1.75vw] 2xl:text-[36px] 2xl:leading-[36px]">
         connect with us today.
       </div>

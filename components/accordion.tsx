@@ -62,6 +62,7 @@ function AccordianItem({
 
   return (
     <section
+      id="services"
       onClick={() => handleClick()}
       className="flex flex-col w-full items-center"
     >

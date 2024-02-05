@@ -24,7 +24,10 @@ export default function Projects() {
   ];
 
   return (
-    <div className="max-w-screen-2xl flex flex-col w-full items-center mx-auto">
+    <div
+      id="projects"
+      className="max-w-screen-2xl flex flex-col w-full items-center mx-auto"
+    >
       <div className="flex flex-col px-4 lg:px-8 lg:flex-row lg:justify-between mt-32 mb-16 md:mb-0 md:mt-52 md:pb-10 w-full">
         <h2 className="main-heading pb-2 tracking-[-2px]">Projects</h2>
         <p className="md:max-w-[320px] md:text-[22px] md:mt-2">

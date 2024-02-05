@@ -1,15 +1,15 @@
 export const navbarItems = [
   {
     text: "about",
-    url: "/#about",
+    url: "about",
   },
   {
     text: "services",
-    url: "/#services",
+    url: "services",
   },
   {
     text: "projects",
-    url: "/#projects",
+    url: "projects",
   },
 ];
 
