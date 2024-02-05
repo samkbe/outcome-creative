@@ -22,7 +22,7 @@ export default function Logos() {
             }`}
           >
             <img
-              className="max-w-[290px] md:h-[30px] dark:invert"
+              className="max-w-[50%] md:max-w-[290px] md:h-[30px] dark:invert"
               src={logoUrl}
             />
           </div>

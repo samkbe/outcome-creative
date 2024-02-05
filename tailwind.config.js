@@ -24,8 +24,8 @@ module.exports = {
           "linear-gradient(to top, #D2B48C, #D2B48C 20%, transparent 20%, transparent)",
       },
       height: {
-        aboveFold: "calc(100vh - 67px)",
-        "aboveFold-md": "calc(100vh - 96px)",
+        aboveFold: "calc(100dvh - 67px)",
+        "aboveFold-md": "calc(100dvh - 96px)",
       },
       gridTemplateColumns: {
         mobileHeroGridCols: "21% 31% 48%",

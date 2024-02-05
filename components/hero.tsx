@@ -86,7 +86,7 @@ export default function Hero({ loading, mobileMenuOpen }: HeroProps) {
   return (
     <div
       id="header"
-      className="h-screen md:h-[80vh] lg:h-screen px-4 pt-[67px] lg:px-8 max-w-screen-2xl md:mx-auto pb-4 relative md:pt-[96px] grid grid-cols-mobileHeroGridCols grid-rows-mobileHeroGridRows md:grid-cols-heroGridCols md:grid-rows-heroGridRows"
+      className="h-[100dvh] md:h-[80vh] lg:h-screen px-4 pt-[67px] lg:px-8 max-w-screen-2xl md:mx-auto pb-4 relative md:pt-[96px] grid grid-cols-mobileHeroGridCols grid-rows-mobileHeroGridRows md:grid-cols-heroGridCols md:grid-rows-heroGridRows"
     >
       <svg
         className="md:hidden pt-[67px] absolute top-0 left-0 right-0 px-4 pb-4"
