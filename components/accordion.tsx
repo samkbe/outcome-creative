@@ -18,7 +18,7 @@ type AccordianItemProps = {
 export default function Accordian() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   return (
-    <div>
+    <div className="md:mt-36 mt-16">
       {accordionItems.map(
         ({ title, secondaryTitle, subtext, symbolUrl, character }, index) => {
           return (

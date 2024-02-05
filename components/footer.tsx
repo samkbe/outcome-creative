@@ -1,7 +1,10 @@
 "use client";
 import { useTheme } from "../context/themeContext";
+import { useScrollContext } from "../context/scrollBarContext";
 
 export default function Footer() {
+  const scrollbar = useScrollContext();
+
   const paths = [
     { d: "M1 0.814453H1377", length: 1377 },
     { d: "M1 0.814453V773.814", length: 773 },
@@ -46,16 +49,24 @@ export default function Footer() {
       </div>
       <div className="col-start-1 row-start-3 md:row-start-4 col-end-3 flex flex-col underline font-medium text-[14px] uppercase my-auto md:my-0 z-10 md:mt-[-8px]">
         <a>
-          <p>instagram ↗</p>
+          <p className="cursor-pointer hover:scale-95 transition-transform">
+            instagram ↗
+          </p>
         </a>
         <a>
-          <p>twitter ↗</p>
+          <p className="cursor-pointer hover:scale-95 transition-transform">
+            twitter ↗
+          </p>
         </a>
       </div>
       <div className="col-start-2 row-start-4 pl-[8vw] flex flex-col"></div>
       <img
+        onClick={() => {
+          const header = document.getElementById("header");
+          if (header) scrollbar?.scrollIntoView(header);
+        }}
         src="/large-arrow.svg"
-        className="absolute h-[35px] w-[35px] md:h-auto md:w-auto bottom-[18px] md:bottom-[16px] right-[16px] lg:right-[32px] rotate-180 dark:invert"
+        className="cursor-pointer hover:scale-95 transition-transform absolute h-[35px] w-[35px] md:h-auto md:w-auto bottom-[18px] md:bottom-[16px] right-[16px] lg:right-[32px] rotate-180 dark:invert z-10"
       />
       <svg
         className="absolute inset-0 px-4 lg:px-8 md:pb-4 hidden md:block"

@@ -49,15 +49,15 @@ export default function Hero({ loading, mobileMenuOpen }: HeroProps) {
   ]);
 
   const [mobilePaths, setMobilePaths] = useState<Path[]>([
+    { d: "M1 1V583.649", length: 585 },
     { d: "M75.81 1V583.649", length: 585 },
     { d: "M187.72 1V583.649", length: 585 },
-    { d: "M360.996 105.06H1", length: 585 },
-    { d: "M360.996 233.46H1", length: 360 },
-    { d: "M360.996 391.04H1", length: 360 },
-    { d: "M1 1V583.649", length: 585 },
+    { d: "M360.996 1V583.649", length: 585 },
+    { d: "M1 1H360.996", length: 360.996 }, // Corrected for left to right animation
+    { d: "M1 105.06H360.996", length: 360 },
+    { d: "M1 233.46H360.996", length: 360 },
+    { d: "M1 391.04H360.996", length: 360 },
     { d: "M1 583.649H360.996", length: 585 },
-    { d: "M360.996 583.649V1", length: 585 },
-    { d: "M360.996 1H1", length: 585 },
   ]);
 
   const svgRef = useRef<SVGSVGElement>(null);
@@ -84,7 +84,10 @@ export default function Hero({ loading, mobileMenuOpen }: HeroProps) {
   }, []);
 
   return (
-    <div className="h-screen md:h-[80vh] lg:h-screen px-4 pt-[67px] lg:px-8 max-w-screen-2xl md:mx-auto pb-4 relative md:pt-[96px] grid grid-cols-mobileHeroGridCols grid-rows-mobileHeroGridRows md:grid-cols-heroGridCols md:grid-rows-heroGridRows">
+    <div
+      id="header"
+      className="h-screen md:h-[80vh] lg:h-screen px-4 pt-[67px] lg:px-8 max-w-screen-2xl md:mx-auto pb-4 relative md:pt-[96px] grid grid-cols-mobileHeroGridCols grid-rows-mobileHeroGridRows md:grid-cols-heroGridCols md:grid-rows-heroGridRows"
+    >
       <svg
         className="md:hidden pt-[67px] absolute top-0 left-0 right-0 px-4 pb-4"
         ref={mobileSvgRef}
@@ -211,18 +214,13 @@ function Title({
           mobileMenuOpen && "hidden"
         } absolute top-[27%] md:top-[29%] left-[16px] right-[16px] md:left-[32px] md:right-[32px] uppercase text-[40px] leading-[40px] md:text-[9vw] md:leading-[7vw] 2xl:text-[145px] 2xl:leading-[145px]`}
       >
-        {/* {!loading && ( */}
         <motion.span
-          // initial={{ opacity: 0 }}
-          // animate={{ opacity: 1 }}
-          // transition={{ duration: 1 }}
           className={`${
             loading ? "invisible opacity-0" : "visible opacity-100"
           } inline w-full md:pl-[15%] transition-opacity duration-300`}
         >
           a bridge
         </motion.span>
-        {/* )} */}
         <span className="inline-flex align-baseline h-[.75em] px-1 md:px-4">
           <motion.svg
             className="h-full w-auto dark:invert  mix-blend-difference"
@@ -296,14 +294,18 @@ function Title({
                 const footer = document.getElementById("footer");
                 if (footer) scrollbar?.scrollIntoView(footer);
               }}
-              className="uppercase bg-black text-white p-5 flex-shrink w-[202px] 2xl:w-[300px] border-0 dark:bg-white dark:text-black 2xl:text-[30px] 2xl:leading-[30px]"
+              className="hover:scale-95 transition-transform uppercase bg-black text-white p-5 flex-shrink w-[202px] 2xl:w-[300px] border-0 dark:bg-white dark:text-black 2xl:text-[30px] 2xl:leading-[30px]"
             >
               Work with us
             </button>
           </motion.div>
           <img
+            onClick={() => {
+              const footer = document.getElementById("footer");
+              if (footer) scrollbar?.scrollIntoView(footer);
+            }}
             src="/large-arrow.svg"
-            className="h-[35px] w-auto md:h-auto absolute bottom-[16px] right-[16px] md:right-[32px] dark:invert"
+            className="cursor-pointer hover:scale-95 transition-transform h-[35px] w-auto md:h-auto absolute bottom-[16px] right-[16px] md:right-[32px] dark:invert"
           />
         </>
       ) : (
