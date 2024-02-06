@@ -10,7 +10,7 @@ import Logos from "@/components/logos";
 import Footer from "@/components/footer";
 
 export default function Home() {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 

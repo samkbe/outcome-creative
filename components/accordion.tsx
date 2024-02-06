@@ -3,10 +3,11 @@ import { useState, Dispatch, SetStateAction, useEffect, useRef } from "react";
 import {
   AnimatePresence,
   motion,
-  useScroll,
+  useMotionValue,
   useTransform,
 } from "framer-motion";
 import { accordionItems } from "@/content/homeContent";
+import { useScrollContext } from "../context/scrollBarContext";
 
 type AccordianItemProps = {
   openIndex: number | null;
@@ -22,30 +23,46 @@ type AccordianItemProps = {
 
 export default function Accordian() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const { scrollY } = useScroll();
+  const scrollbar = useScrollContext();
   const ref = useRef<HTMLDivElement>(null);
   const [startY, setStartY] = useState(0);
   const [endY, setEndY] = useState(0);
-  const [elementTop, setElementTop] = useState(0);
-  const [elementBottom, setElementBottom] = useState(0);
+  const scrollYMotion = useMotionValue(0);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (!ref.current) return;
+    if (!scrollbar) return;
+
+    const calculatePositions = () => {
+      if (!ref.current || !scrollbar) return;
+
       const rect = ref.current.getBoundingClientRect();
-      setElementTop(rect.top + window.scrollY);
-      setElementBottom(rect.bottom + window.scrollY);
-      setStartY(rect.top + window.scrollY);
-      setEndY(rect.bottom + window.scrollY);
+
+      const secRect = document.getElementById("about")?.getBoundingClientRect();
+
+      const scrollTop = scrollbar.scrollTop;
+
+      if (secRect) setStartY(secRect.top + scrollTop - 200);
+      setEndY(rect.bottom + scrollTop - 400);
     };
 
-    handleResize();
+    const timeoutId = setTimeout(() => calculatePositions(), 4002);
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [ref]);
+    window.addEventListener("resize", calculatePositions);
 
-  const width = useTransform(scrollY, [startY, endY], ["0%", "100%"]);
+    const scrollListener = () => {
+      if (scrollbar) scrollYMotion.set(scrollbar.scrollTop);
+    };
+
+    scrollbar.addListener(scrollListener);
+
+    return () => {
+      scrollbar.removeListener(scrollListener);
+      window.removeEventListener("resize", calculatePositions);
+      clearTimeout(timeoutId);
+    };
+  }, [scrollbar, scrollYMotion, ref]);
+
+  const width = useTransform(scrollYMotion, [startY, endY], ["20%", "100%"]);
 
   function handleClick(index: number) {
     if (index === openIndex) {
@@ -54,8 +71,6 @@ export default function Accordian() {
       setOpenIndex(index);
     }
   }
-
-  console.log("WIDTH: ", width);
 
   return (
     <div ref={ref} id="services" className="md:pt-36 pt-16">
@@ -69,7 +84,7 @@ export default function Accordian() {
             >
               <motion.div
                 style={{ width }}
-                className={`h-[1px] bg-black dark:bg-white`}
+                className={`h-[1px] bg-black dark:bg-white self-start`}
               />
               <div className="my-7 lg:my-4 px-4 lg:px-8 flex md:flex-row flex-col relative justify-between max-w-screen-2xl w-full">
                 <h3 className="uppercase font-medium text-base md:w-[40%] text-[16px] w-full">
@@ -91,7 +106,13 @@ export default function Accordian() {
                           {secondaryTitle}
                         </h3>
                         <p className="">{subtext}</p>
-                        <button className="mt-4 py-2 px-4 uppercase md:w-44 text-white bg-black dark:bg-white dark:text-black">
+                        <button
+                          onClick={() => {
+                            const footer = document.getElementById("footer");
+                            if (footer) scrollbar?.scrollIntoView(footer);
+                          }}
+                          className="hover:scale-95 transition-transform mt-4 py-2 px-4 uppercase md:w-44 text-white bg-black dark:bg-white dark:text-black"
+                        >
                           Work with us
                         </button>
                       </div>
@@ -172,7 +193,7 @@ function AccordianItem({
                     {secondaryTitle}
                   </h3>
                   <p className="">{subtext}</p>
-                  <button className="mt-4 py-2 px-4 uppercase md:w-44 text-white bg-black dark:bg-white dark:text-black">
+                  <button className="hover:scale-95 transition-transform mt-4 py-2 px-4 uppercase md:w-44 text-white bg-black dark:bg-white dark:text-black">
                     Work with us
                   </button>
                 </div>

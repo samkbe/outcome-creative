@@ -1,28 +1,6 @@
-export default function Projects() {
-  const projects = [
-    {
-      imageSrc: "/intersect-by-lexus.jpg",
-      title: "Intersect by Lexus",
-      symbols: ["/triangle.svg", "/polygon.svg", "/hexagon.svg"],
-      bodyText:
-        "Developing and executing a digital and influencer strategy for Lexus’ Michelin rated hospitality space.",
-    },
-    {
-      imageSrc: "/ayr-wellness.jpg",
-      title: "Ayr Wellness",
-      symbols: ["/triangle.svg", "/polygon.svg", "/hexagon.svg", "/square.svg"],
-      bodyText:
-        "Building a cohesive parent brand after a cannabis acquisition spree.",
-    },
-    {
-      imageSrc: "/infosum.jpg",
-      title: "Infosum",
-      symbols: ["/triangle.svg", "/hexagon.svg"],
-      bodyText:
-        "Refining a rapidly growing tech brand prior to a successful series b round.",
-    },
-  ];
+import { projects } from "../content/homeContent";
 
+export default function Projects() {
   return (
     <div
       id="projects"

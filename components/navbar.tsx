@@ -68,7 +68,7 @@ function NavItem({ url, text }: { url: string; text: string }) {
   const scrollbar = useScrollContext();
 
   return (
-    <div
+    <li
       onClick={() => {
         const element = document.getElementById(url);
         if (element) scrollbar?.scrollIntoView(element);
@@ -81,7 +81,7 @@ function NavItem({ url, text }: { url: string; text: string }) {
       <div className="whitespace-nowrap text-[18px] leading-[20px] transition-transform duration-300 ease-in-out group-hover:-translate-y-full absolute top-[18px] left-0">
         {text}
       </div>
-    </div>
+    </li>
   );
 }
 
