@@ -47,7 +47,7 @@ export default function Footer() {
         <br />
         outcomecreative.com
       </div>
-      <div className="col-start-1 row-start-3 md:row-start-4 col-end-3 flex flex-col underline font-medium text-[14px] uppercase my-auto md:my-0 z-10 md:mt-[-8px]">
+      <div className="col-start-1 row-start-3 md:row-start-4 col-end-3 flex flex-col underline font-medium text-[14px] uppercase my-auto md:my-0 z-10">
         <a>
           <p className="cursor-pointer hover:scale-95 transition-transform">
             instagram ↗
