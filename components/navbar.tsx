@@ -68,18 +68,19 @@ function NavItem({ url, text }: { url: string; text: string }) {
   const scrollbar = useScrollContext();
 
   return (
-    <div className="overflow-hidden h-[22px] text-[22px]">
-      <li className="">{text}</li>
-      <li
-        className=""
-        key={text}
-        onClick={() => {
-          const element = document.getElementById(url);
-          if (element) scrollbar?.scrollIntoView(element);
-        }}
-      >
+    <div
+      onClick={() => {
+        const element = document.getElementById(url);
+        if (element) scrollbar?.scrollIntoView(element);
+      }}
+      className="group overflow-hidden relative cursor-pointer inline-block"
+    >
+      <div className="whitespace-nowrap text-[18px] leading-[18px] transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
         {text}
-      </li>
+      </div>
+      <div className="whitespace-nowrap text-[18px] leading-[20px] transition-transform duration-300 ease-in-out group-hover:-translate-y-full absolute top-[18px] left-0">
+        {text}
+      </div>
     </div>
   );
 }
@@ -133,5 +134,5 @@ function NycTime() {
     return () => clearInterval(timer);
   }, []);
 
-  return <p className="hidden md:block">{time}</p>;
+  return <p className="hidden md:block text-[18px]">{time}</p>;
 }
