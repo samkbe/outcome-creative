@@ -18,6 +18,7 @@ export default function NavBar({
   setMobileMenuOpen,
 }: NavBarProps) {
   const { theme, toggleTheme } = useTheme();
+  const scrollbar = useScrollContext();
 
   return (
     <div
@@ -28,9 +29,10 @@ export default function NavBar({
     >
       <nav className="px-4 md:px-8 h-[64px] md:h-24 flex items-center justify-between max-w-screen-2xl mx-auto">
         <img
-          className="dark:invert h-[27px] w-[113px] md:w-[173px] md:h-[41px]"
+          className="z-10 cursor-pointer dark:invert h-[27px] w-[113px] md:w-[173px] md:h-[41px]"
           src="/outcome-creative-logo.svg"
           alt="Outcome Creative Logo"
+          onClick={() => scrollbar?.scrollTo(0, 0)}
         />
         <div className="hidden md:flex justify-end w-full mr-4">
           <ul className="flex gap-10">

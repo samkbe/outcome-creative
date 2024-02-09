@@ -8,7 +8,7 @@ export default function Logos() {
 
   return (
     <div className="flex px-4 lg:px-8 pt-28 flex-col md:flex-row md:flex-wrap md:pb-44 max-w-screen-2xl mx-auto dark:text-white dark:bg-black mb-4 md:mb-0">
-      <h2 className="sub-heading pb-14 md:w-full md:order-1 md:max-w-[1144px]">
+      <h2 className="sub-heading pb-14 md:w-full md:order-1 md:max-w-[1023px]">
         we strive to work with first-class partners who are engaged in the work
         they do.
       </h2>
@@ -22,6 +22,7 @@ export default function Logos() {
             }`}
           >
             <img
+              alt="Outcome Creative client logo"
               className="max-w-[50%] md:max-w-[290px] md:h-[30px] dark:invert"
               src={logoUrl}
             />

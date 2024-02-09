@@ -133,10 +133,8 @@ export default function Accordian() {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
                     className={`${
-                      index === openIndex
-                        ? "md:hidden"
-                        : "rotate-180 transform-gpu transition ease-in-out"
-                    } absolute right-4 lg:right-8 dark:invert`}
+                      index === openIndex ? "md:hidden" : "rotate-180"
+                    } absolute right-4 lg:right-8 dark:invert transform-gpu transition ease-in-out`}
                     src="/arrow.svg"
                   />
                 </AnimatePresence>

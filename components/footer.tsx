@@ -47,18 +47,6 @@ export default function Footer() {
         <br />
         outcomecreative.com
       </div>
-      <div className="col-start-1 row-start-3 md:row-start-4 col-end-3 flex flex-col underline font-medium text-[14px] uppercase my-auto md:my-0 z-10">
-        <a>
-          <p className="cursor-pointer hover:scale-95 transition-transform">
-            instagram ↗
-          </p>
-        </a>
-        <a>
-          <p className="cursor-pointer hover:scale-95 transition-transform">
-            twitter ↗
-          </p>
-        </a>
-      </div>
       <div className="col-start-2 row-start-4 pl-[8vw] flex flex-col"></div>
       <img
         onClick={() => {
@@ -105,7 +93,6 @@ export default function Footer() {
         })}
       </svg>
       <div className="absolute bottom-[16px] left-[16px] lg:left-[32px] text-[14px] uppercase max-w-[150px] md:max-w-[60%] md:w-[60%] md:flex md:justify-between ">
-        <p className="font-medium underline">privacy policy</p>
         <p className="font-light">Copyright © 2024 OUTCOME CREATIVE</p>
       </div>
     </div>

@@ -14,7 +14,7 @@ export default function Projects() {
         </p>
       </div>
       <div className="overflow-x-hidden w-full max-w-screen-2xl">
-        <div className="flex flex-row animate-scroll w-[1800px] md:w-[2340px] box-border">
+        <div className="flex flex-row animate-scroll w-[2400px] md:w-[3120px] box-border">
           {[...projects, ...projects].map(
             ({ imageSrc, title, symbols, bodyText }, index) => (
               <div
@@ -22,7 +22,7 @@ export default function Projects() {
                 className="px-2 w-[300px] md:w-[390px] box-border"
               >
                 <div className="relative mb-2 md:mb-5">
-                  <img className="w-full h-auto" src={imageSrc} />
+                  <img alt={title} className="w-full h-auto" src={imageSrc} />
                   <div className="absolute inset-0 bg-gradient-to-t from-tan to-10%" />
                 </div>
                 <p className="mb-1 md:mb-2 uppercase font-medium">

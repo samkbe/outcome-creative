@@ -1,15 +1,11 @@
-"use client";
-import { useEffect, useState } from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import Scrollbar from "smooth-scrollbar";
 import "./globals.css";
-import { ThemeProvider } from "../context/themeContext";
-import ScrollContext from "../context/scrollBarContext";
 
-const metadata: Metadata = {
-  title: "Outcome Creative",
-  description: "Outcome Creative Description",
+export const metadata: Metadata = {
+  title: "Creative Agency in NYC | Outcome Creative",
+  description:
+    "We are Outcome Creative. A strategic branding, design, and business development shop that toes the line between solving for creativity and growth.",
 };
 
 const aeonik = localFont({
@@ -51,38 +47,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [scrollbar, setScrollbar] = useState<Scrollbar | null>(null);
-
-  useEffect(() => {
-    const scrollbarInstance = Scrollbar.init(document.body, {
-      damping: 0.05,
-    });
-
-    const fixed = document.getElementById("navbar");
-
-    scrollbarInstance.addListener((status) => {
-      const { offset } = status;
-
-      if (fixed) {
-        fixed.style.transform = `translateY(${offset.y}px)`;
-      }
-    });
-
-    setScrollbar(scrollbarInstance);
-
-    return () => {
-      if (scrollbar) scrollbar.destroy();
-    };
-  }, []);
-
   return (
-    <ThemeProvider>
-      <ScrollContext.Provider value={scrollbar}>
-        <html lang="en">
-          <link rel="icon" href="/favicon.svg" sizes="any" />
-          <body className={aeonik.variable + " dark:bg-black"}>{children}</body>
-        </html>
-      </ScrollContext.Provider>
-    </ThemeProvider>
+    <html lang="en">
+      <link rel="icon" href="/favicon.svg" sizes="any" />
+      <body className={aeonik.variable + " dark:bg-black"}>{children}</body>
+    </html>
   );
 }

@@ -32,7 +32,7 @@ export const accordionItems = [
   },
   {
     title: "photo & video production",
-    secondaryTitle: "WIP: Breathe life into your organization.",
+    secondaryTitle: "Breathe life into your organization.",
     subtext:
       "Having a robust content library for both consumer facing and B2B brands has become increasingly important. Our photo and video capabilities are extensive, from basic portrait captures and event photography to complex commercial shoots.",
     symbolUrl: "/polygon.svg",
@@ -42,7 +42,7 @@ export const accordionItems = [
     title: "Social media & influencer strategy",
     secondaryTitle: "Develop a public presence and find your champions.",
     subtext:
-      "Activations around micro and macro influencers can bring significant value, and bring your company to the forefront of social dialogue and awareness. With a young and culturally tapped in team, we can help you build an influencer focused campaign, curate, and secure the champions you need.",
+      "Activations around micro and macro influencers can draw significant awareness and bring your brand to the forefront of social dialogue. With a young and culturally tapped in team, we can help you build the right influencer focused campaign and secure the champions you need.",
     symbolUrl: "/hexagon.svg",
     character: ["➃", "➍"],
   },
@@ -50,7 +50,7 @@ export const accordionItems = [
     title: "business development consulting",
     secondaryTitle: "Develop a robust pipeline.",
     subtext:
-      "Do you find yourself so focused on the work that when a project is over you find yourself scrambling for the next client or revenue stream? Our founder has developed successful cold outreach programs built for sustained growth with a proven record of deal sizes in the 7-figures. Inquire below to schedule a complimentary 1x1 meeting.",
+      "Are you so focused on the work that when a project is over you find yourself scrambling for the next client? Our founder has developed a successful cold outreach programs built for sustained growth with a proven record of deal sizes in the 7-figures. Inquire below to schedule a complimentary 1x1 meeting.",
     symbolUrl: "/circle.svg",
     character: ["➄", "➎"],
   },
@@ -76,6 +76,13 @@ export const projects = [
     title: "Infosum",
     symbols: ["/triangle.svg", "/hexagon.svg"],
     bodyText:
-      "Refining a rapidly growing tech brand prior to a successful series b round.",
+      "Refining a rapidly growing tech brand and bespoke communications plan prior to a successful series b round.",
+  },
+  {
+    imageSrc: "/milk.jpg",
+    title: "Milk Studios",
+    symbols: ["/hexagon.svg", "/triangle.svg"],
+    bodyText:
+      "Curating themes, featuring artists, and executing partnerships for one of the largest non-profit photography accounts in the world.",
   },
 ];
