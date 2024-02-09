@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -68,6 +69,7 @@ export default function RootLayout({
     <html lang="en">
       <link rel="icon" href="/favicon.svg" sizes="any" />
       <body className={aeonik.variable + " dark:bg-black"}>{children}</body>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-4WTWFNSW35" />
     </html>
   );
 }
