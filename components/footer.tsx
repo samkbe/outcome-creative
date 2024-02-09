@@ -49,6 +49,7 @@ export default function Footer() {
       </div>
       <div className="col-start-2 row-start-4 pl-[8vw] flex flex-col"></div>
       <img
+        alt="arrow icon"
         onClick={() => {
           const header = document.getElementById("header");
           if (header) scrollbar?.scrollIntoView(header);

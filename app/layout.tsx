@@ -3,9 +3,26 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://outcomecreative.com"),
   title: "Creative Agency in NYC | Outcome Creative",
   description:
     "We are Outcome Creative. A strategic branding, design, and business development shop that toes the line between solving for creativity and growth.",
+  openGraph: {
+    title: "Outcome Creative",
+    description:
+      "A strategic branding, design, and business development shop that toes the line between solving for creativity and growth.",
+    url: "/",
+    siteName: "Outcome Creative",
+    images: [
+      {
+        url: "/outcome-creative-logo.jpg",
+        width: 4000,
+        height: 917,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 const aeonik = localFont({

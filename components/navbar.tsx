@@ -48,6 +48,7 @@ export default function NavBar({
             className="cursor-pointer pr-4 md:pr-0 md:ml-4 flex items-center justify-center"
           >
             <img
+              alt="Dark or light mode icon"
               className="w-auto h-[1.25em] md:h-[1em]"
               src={
                 theme === "light"

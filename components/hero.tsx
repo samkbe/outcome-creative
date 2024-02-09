@@ -300,6 +300,7 @@ function Title({
             </button>
           </motion.div>
           <img
+            alt="arrow-icon"
             onClick={() => {
               const footer = document.getElementById("footer");
               if (footer) scrollbar?.scrollIntoView(footer);

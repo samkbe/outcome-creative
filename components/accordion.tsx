@@ -128,6 +128,7 @@ export default function Accordian() {
                 </AnimatePresence>
                 <AnimatePresence>
                   <motion.img
+                    alt="arrow icon"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -208,6 +209,7 @@ function AccordianItem({
         </AnimatePresence>
         <AnimatePresence>
           <motion.img
+            alt="arrow icon"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
