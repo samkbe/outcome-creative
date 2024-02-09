@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://outcomecreative.com"),
   title: "Creative Agency in NYC | Outcome Creative",
   description:
-    "We are Outcome Creative. A strategic branding, design, and business development shop that toes the line between solving for creativity and growth.",
+    "We are Outcome Creative. A strategic branding, design, and business development shop that toes the line between solving for creativity and growth. Contact Us.",
   openGraph: {
     title: "Outcome Creative",
     description:
@@ -24,6 +24,39 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      url: "https://outcomecreative.com/",
+      name: "Outcome Creative",
+      description:
+        "We are Outcome Creative. A strategic branding, design, and business development shop that toes the line between solving for creativity and growth. Contact Us.",
+    },
+    {
+      "@type": "Service",
+      url: "https://outcomecreative.com/#services",
+      serviceType: "Creative agency services",
+      name: "Our Services",
+      description: "Overview of our services",
+    },
+    {
+      "@type": "ContactPage",
+      url: "https://outcomecreative.com/#footer",
+      contactType: "customer support",
+      name: "Contact Us",
+      description: "Get In Touch Today",
+    },
+    {
+      "@type": "CollectionPage",
+      url: "https://outcomecreative.com/#projects",
+      name: "Projects",
+      description: "Our portfolio of projects",
+    },
+  ],
 };
 
 const aeonik = localFont({
@@ -70,6 +103,10 @@ export default function RootLayout({
       <link rel="icon" href="/favicon.svg" sizes="any" />
       <body className={aeonik.variable + " dark:bg-black"}>{children}</body>
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-4WTWFNSW35" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </html>
   );
 }

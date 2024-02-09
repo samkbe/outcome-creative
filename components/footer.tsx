@@ -42,11 +42,11 @@ export default function Footer() {
       <div className="z-50 col-start-1 row-start-1 col-end-4 font-medium uppercase text-[24px] md:text-[2vw] md:leading-[1.75vw] 2xl:text-[36px] 2xl:leading-[36px]">
         connect with us today.
       </div>
-      <div className="col-start-1 col-end-4 row-start-2 md:row-span-1 md:row-end-3 md:col-start-3 my-auto md:pl-10 uppercase text-[30px] leading-[30px] md:text-[5vw] md:leading-[4.5vw] 2xl:text-[80px] 2xl:leading-[80px] z-10">
+      <h2 className="col-start-1 col-end-4 row-start-2 md:row-span-1 md:row-end-3 md:col-start-3 my-auto md:pl-10 uppercase text-[30px] leading-[30px] md:text-[5vw] md:leading-[4.5vw] 2xl:text-[80px] 2xl:leading-[80px] z-10">
         contact@
         <br />
         outcomecreative.com
-      </div>
+      </h2>
       <div className="col-start-2 row-start-4 pl-[8vw] flex flex-col"></div>
       <img
         alt="arrow icon"
