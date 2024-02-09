@@ -122,7 +122,9 @@ export default function Accordian() {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
                     className={`${
-                      index === openIndex ? "md:hidden" : "rotate-180"
+                      index === openIndex
+                        ? "md:hidden rotate-180 md:rotate-0"
+                        : ""
                     } absolute right-4 lg:right-8 dark:invert transform-gpu transition ease-in-out`}
                     src="/arrow.svg"
                   />
