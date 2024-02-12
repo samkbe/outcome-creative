@@ -98,7 +98,10 @@ export default function Video() {
             scaleY: clipPathValue,
           }}
         >
-          <source src="/background-video.mp4" type="video/mp4" />
+          <source
+            src="https://ticxiqu1wslrorjp.public.blob.vercel-storage.com/background-video-sgZ2AyU9TzC56nnK0wZS3zKjyv0Z0j.mp4"
+            type="video/mp4"
+          />
         </motion.video>
       </motion.div>
 
